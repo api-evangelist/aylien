@@ -1,0 +1,34 @@
+name: AYLIEN News API FinOps
+description: Financial operations guidance for managing and optimizing costs when using the AYLIEN News Intelligence API.
+url: https://aylien.com/product/plans
+recommendations:
+  - name: Start with Free Tier
+    description: Use the free tier with 1,000 monthly credits to evaluate the API before committing to a paid plan.
+    category: cost-optimization
+  - name: Monitor Credit Usage
+    description: Track monthly credit consumption through the AYLIEN dashboard to avoid unexpected overages and optimize query efficiency.
+    category: monitoring
+  - name: Use Rate Limit Booster Packages
+    description: Rather than upgrading to a higher plan, consider rate limit booster packages available on all subscription plans for temporary or burst traffic needs.
+    category: cost-optimization
+  - name: Cache API Responses
+    description: Cache frequently-requested queries locally to reduce redundant API calls and stay within credit limits.
+    category: cost-optimization
+  - name: Annual Billing Discount
+    description: Enterprise plans offer annual billing discounts. Consider annual commitment for production workloads to reduce total cost.
+    category: cost-optimization
+  - name: Filter Queries Precisely
+    description: Use specific filters (sources, languages, date ranges, entities) to narrow queries and reduce unnecessary credit consumption on irrelevant results.
+    category: cost-optimization
+  - name: Use Appropriate Plan
+    description: The Pro plan at $299/month provides access to 5 million articles, which is significantly more cost-effective per article than the Standard plan for high-volume use cases.
+    category: planning
+pricing:
+  model: credit-based
+  currency: USD
+  billingCycles:
+    - monthly
+    - annual
+  freeTrialDays: 14
+  freeTrialPlan: Pro
+  contact: newsapi-support@quantexa.com

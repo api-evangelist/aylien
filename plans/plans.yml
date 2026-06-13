@@ -1,0 +1,53 @@
+name: AYLIEN News API Plans
+description: Pricing plans for the AYLIEN News Intelligence API, providing access to NLP-enriched news articles from over 80,000 sources.
+url: https://aylien.com/product/plans
+plans:
+  - name: Free
+    description: Free tier for evaluation and small-scale projects with limited monthly credits.
+    price: 0
+    priceCurrency: USD
+    billingCycle: monthly
+    features:
+      - 1000 monthly API credits
+      - Access to core news search endpoints
+      - NLP enrichments (sentiment, entities, concepts)
+      - REST API access
+  - name: Standard
+    description: Standard plan for developers and small teams needing regular news intelligence access.
+    price: 199
+    priceCurrency: USD
+    billingCycle: monthly
+    features:
+      - 50000 monthly API credits
+      - Access to all news search endpoints
+      - NLP enrichments (sentiment, entities, concepts, summarization)
+      - Historical archive access
+      - REST API and SDK access
+      - Email support
+  - name: Pro
+    description: Pro plan with 14-day free trial, expanded API access and higher limits for production workloads.
+    price: 299
+    priceCurrency: USD
+    billingCycle: monthly
+    features:
+      - 5 million articles per month
+      - Full endpoint access including timeseries, trends, clusters
+      - Advanced NLP enrichments
+      - Historical archive access
+      - REST API and SDK access
+      - Priority support
+      - Rate limit booster packages available
+  - name: Enterprise
+    description: Custom enterprise plan for large-scale deployments with unlimited access and dedicated support.
+    price: 0
+    priceCurrency: USD
+    billingCycle: custom
+    features:
+      - Custom article volume
+      - Dedicated infrastructure
+      - Custom NLP enrichments
+      - Full historical archive
+      - All endpoints and SDKs
+      - Dedicated account management
+      - SLA guarantees
+      - Annual discount available

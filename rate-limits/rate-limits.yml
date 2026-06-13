@@ -1,0 +1,40 @@
+name: AYLIEN News API Rate Limits
+description: Rate limiting information for the AYLIEN News Intelligence API. Limits are applied per application ID.
+url: https://docs.aylien.com/newsapi/v6/getting-started/
+rateLimits:
+  - name: Per Minute Limit
+    description: Maximum number of API requests allowed per minute per application ID.
+    limit: 60
+    period: minute
+    scope: application
+    notes: Rate limit booster packages are available on every News API subscription plan if higher limits are needed.
+  - name: Per Second Limit
+    description: Maximum number of API requests allowed per second per application ID.
+    limit: 3
+    period: second
+    scope: application
+  - name: Free Tier Monthly
+    description: Monthly credit limit for the free tier plan.
+    limit: 1000
+    period: month
+    scope: account
+    plan: Free
+  - name: Standard Monthly
+    description: Monthly credit limit for the Standard plan.
+    limit: 50000
+    period: month
+    scope: account
+    plan: Standard
+  - name: Pro Monthly Articles
+    description: Maximum articles accessible per month on the Pro plan.
+    limit: 5000000
+    period: month
+    scope: account
+    plan: Pro
+headers:
+  - name: X-RateLimit-Limit
+    description: The maximum number of requests allowed per time window.
+  - name: X-RateLimit-Remaining
+    description: The number of requests remaining in the current time window.
+  - name: X-RateLimit-Reset
+    description: The time at which the current rate limit window resets (Unix timestamp).

@@ -1,0 +1,73 @@
+aid: aylien
+name: AYLIEN
+description: AYLIEN is a news intelligence and text analysis platform providing REST APIs for article extraction, sentiment analysis, entity recognition, summarization, concept detection, and NLP-enriched news aggregation from over 80,000 public and licensed sources delivering 1.4 million articles daily. Now part of Quantexa, AYLIEN enables developers, data scientists, and risk analysts to build intelligent applications powered by global news intelligence.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - News Intelligence
+  - Text Analysis
+  - NLP
+  - Sentiment Analysis
+  - Entity Recognition
+  - Natural Language Processing
+  - News API
+  - Article Extraction
+  - Summarization
+  - Concept Detection
+apis:
+  - aid: aylien:news-api
+    name: AYLIEN News API
+    description: The AYLIEN News API provides access to NLP-enriched news articles from over 80,000 public and licensed sources. It enables searching, filtering, and analyzing global news content with endpoints for stories, timeseries, trends, clusters, and coverages. Each article is enriched with entities, sentiment, concepts, categories, and other NLP metadata.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+    baseURL: https://api.aylien.com
+    tags:
+      - News
+      - NLP
+      - Sentiment Analysis
+      - Entity Recognition
+      - News Intelligence
+    properties:
+      - type: Documentation
+        url: https://docs.aylien.com/newsapi/v6/getting-started/
+      - type: OpenAPI
+        url: https://github.com/AYLIEN/apis
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+    contact:
+      - FN: AYLIEN Support
+        email: newsapi-support@quantexa.com
+common:
+  - type: Website
+    url: https://aylien.com
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/AYLIEN
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/aylien
+  - type: Blog
+    url: https://aylien.com/blog/general
+  - type: Pricing
+    url: https://aylien.com/product/plans
+  - type: StatusPage
+    url: https://aylien.statuspage.io/
+  - type: X
+    url: https://twitter.com/aylien
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
