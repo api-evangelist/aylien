@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Language",
+  "type": "object",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "lang": {
+      "type": "string",
+      "description": "Detected language",
+      "enum": [
+        "en",
+        "de",
+        "es",
+        "fr",
+        "it"
+      ]
+    },
+    "confidence": {
+      "$ref": "#/definitions/GenericConfidence"
+    }
+  }
+}

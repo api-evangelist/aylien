@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AggregatedSentiment",
+  "description": "The aggregation of sentiments",
+  "type": "object",
+  "properties": {
+    "positive": {
+      "description": "Positive sentiments count",
+      "format": "int32",
+      "type": "integer"
+    },
+    "neutral": {
+      "description": "Neutral sentiments count",
+      "format": "int32",
+      "type": "integer"
+    },
+    "negative": {
+      "description": "Negative sentiments count",
+      "format": "int32",
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EntitySurfaceForm",
+  "properties": {
+    "text": {
+      "description": "The entity text",
+      "type": "string"
+    },
+    "indices": {
+      "description": "The indices of the entity text",
+      "items": {
+        "items": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StoryCluster",
+  "properties": {
+    "id": {
+      "description": "A unique identification for the cluster",
+      "format": "int64",
+      "type": "integer"
+    },
+    "phrases": {
+      "description": "Suggested labels for the cluster",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "score": {
+      "description": "The cluster score",
+      "format": "double",
+      "type": "number"
+    },
+    "size": {
+      "description": "Size of the cluster",
+      "format": "int32",
+      "type": "integer"
+    },
+    "stories": {
+      "description": "Story ids which are in the cluster",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

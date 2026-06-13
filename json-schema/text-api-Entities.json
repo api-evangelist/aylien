@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entities",
+  "type": "object",
+  "description": "Entities root",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "language": {
+      "$ref": "#/definitions/GenericInputLanguage"
+    },
+    "entities": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "array",
+          "items": {
+            "description": "Detected entity",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

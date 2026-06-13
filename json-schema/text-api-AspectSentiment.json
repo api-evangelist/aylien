@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AspectSentiment",
+  "type": "object",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Provided domain"
+    },
+    "aspects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AspectSentimentAspect"
+      }
+    },
+    "sentences": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AspectSentimentSentence"
+      }
+    }
+  }
+}

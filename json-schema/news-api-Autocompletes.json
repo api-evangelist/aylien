@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Autocompletes",
+  "properties": {
+    "autocompletes": {
+      "description": "An array of autocompletes",
+      "items": {
+        "$ref": "#/components/schemas/Autocomplete"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

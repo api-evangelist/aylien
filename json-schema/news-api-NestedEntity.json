@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "To perform a nested search on entities use this.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "name": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "surface_forms.text": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "sentiment": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "element": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "links.wikipedia": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "links.wikidata": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "stock_ticker": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "type": {
+      "$ref": "#/components/schemas/Query"
+    }
+  }
+}

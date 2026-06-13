@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hashtags",
+  "type": "object",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "language": {
+      "$ref": "#/definitions/GenericInputLanguage"
+    },
+    "hashtags": {
+      "type": "array",
+      "description": "Detected hashtags",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

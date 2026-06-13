@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ShareCounts",
+  "properties": {
+    "facebook": {
+      "description": "Facebook shares count",
+      "items": {
+        "$ref": "#/components/schemas/ShareCount"
+      },
+      "type": "array"
+    },
+    "google_plus": {
+      "description": "Google Plus shares count",
+      "items": {
+        "$ref": "#/components/schemas/ShareCount"
+      },
+      "type": "array"
+    },
+    "linkedin": {
+      "description": "LinkedIn shares count",
+      "items": {
+        "$ref": "#/components/schemas/ShareCount"
+      },
+      "type": "array"
+    },
+    "reddit": {
+      "description": "Reddit shares count",
+      "items": {
+        "$ref": "#/components/schemas/ShareCount"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

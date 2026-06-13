@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rank",
+  "properties": {
+    "country": {
+      "description": "The country code which the rank is in it",
+      "type": "string"
+    },
+    "fetched_at": {
+      "description": "The fetched date of the rank",
+      "format": "date-time",
+      "type": "string"
+    },
+    "rank": {
+      "description": "The rank",
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

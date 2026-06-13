@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entity",
+  "properties": {
+    "id": {
+      "description": "The unique ID of the entity",
+      "type": "string"
+    },
+    "indices": {
+      "description": "The indices of the entity text",
+      "items": {
+        "items": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "links": {
+      "$ref": "#/components/schemas/EntityLinks"
+    },
+    "text": {
+      "description": "The entity text",
+      "type": "string"
+    },
+    "stock_ticker": {
+      "description": "The stock_ticker of the entity (might be null)",
+      "type": "string"
+    },
+    "types": {
+      "description": "An array of the entity types",
+      "items": {
+        "description": "An entity type",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "sentiment": {
+      "$ref": "#/components/schemas/EntitySentiment"
+    },
+    "surface_forms": {
+      "items": {
+        "$ref": "#/components/schemas/EntitySurfaceForm"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

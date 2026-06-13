@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CategoryLinks",
+  "properties": {
+    "parent": {
+      "description": "A URL pointing to the parent category",
+      "type": "string"
+    },
+    "self": {
+      "description": "A URL pointing to the category",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

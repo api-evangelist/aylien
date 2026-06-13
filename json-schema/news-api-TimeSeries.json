@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TimeSeries",
+  "properties": {
+    "count": {
+      "description": "The count of time series bin",
+      "format": "int32",
+      "type": "integer"
+    },
+    "published_at": {
+      "description": "The published date of the time series bin",
+      "format": "date-time",
+      "type": "string"
+    },
+    "sentiment": {
+      "$ref": "#/components/schemas/AggregatedSentiment"
+    }
+  },
+  "type": "object"
+}

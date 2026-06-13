@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Clusters",
+  "properties": {
+    "cluster_count": {
+      "description": "The total number of clusters",
+      "format": "int64",
+      "type": "integer"
+    },
+    "clusters": {
+      "description": "An array of clusters",
+      "items": {
+        "$ref": "#/components/schemas/Cluster"
+      },
+      "type": "array"
+    },
+    "next_page_cursor": {
+      "description": "The next page cursor",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

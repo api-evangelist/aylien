@@ -1,0 +1,98 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "openapi": "https://openapis.org/",
+    "aylien": "https://aylien.com/"
+  },
+  "@type": "WebAPI",
+  "@id": "https://aylien.com/text-api",
+  "name": "AYLIEN Text API",
+  "description": "The AYLIEN Text Analysis API is a package of Natural Language Processing and Machine Learning-powered APIs for analyzing and extracting various kinds of information from textual content.",
+  "version": "1.0",
+  "termsOfService": "https://newsapi.aylien.com/tos",
+  "url": "https://api.aylien.com/api/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "AYLIEN",
+    "url": "https://aylien.com"
+  },
+  "potentialAction": [
+    {
+      "@type": "EntryPoint",
+      "name": "language",
+      "description": "Detect language",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/language"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "documentSentiment",
+      "description": "Detect sentiment",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/sentiment"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "concepts",
+      "description": "Concept extraction",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/concepts"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "entities",
+      "description": "Entity extraction",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/entities"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "extractArticle",
+      "description": "Article Extraction",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/extract"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "summarize",
+      "description": "Summarization",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/summarize"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "classifyIPTC",
+      "description": "Classification by IPTC NewsCodes",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/classify/iptc-subjectcode"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "classifyIAB",
+      "description": "Classification by IAB QAG",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/classify/iab-qag"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "hashtags",
+      "description": "Hashtag suggestion",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/hashtags"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "aspectSentiment",
+      "description": "Aspect-based sentiment",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/absa"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "entitySentiment",
+      "description": "Entity-level sentiment",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/api/v1/elsa"
+    }
+  ]
+}

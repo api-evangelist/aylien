@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StoryTranslation",
+  "properties": {
+    "body": {
+      "description": "Translation of body",
+      "type": "string"
+    },
+    "title": {
+      "description": "Translation of title",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Warning",
+  "properties": {
+    "id": {
+      "description": "The identfier of the warning, represents its origin.",
+      "type": "string"
+    },
+    "links": {
+      "description": "Contians links to the documentation.",
+      "$ref": "#/components/schemas/ErrorLinks"
+    },
+    "detail": {
+      "description": "The detailed description of the warning.",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EntitySentimentEntity",
+  "type": "object",
+  "description": "Entity-based sentiment data, per entity",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Entity type"
+    },
+    "mentions": {
+      "type": "array",
+      "description": "Entity mentions",
+      "items": {
+        "$ref": "#/definitions/EntitySentimentEntityMention"
+      }
+    },
+    "overall_sentiment": {
+      "type": "object",
+      "description": "Entity sentiment",
+      "properties": {
+        "polarity": {
+          "$ref": "#/definitions/GenericPolarity"
+        },
+        "confidence": {
+          "$ref": "#/definitions/GenericPolarityConfidence"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "Entity links",
+      "items": {
+        "$ref": "#/definitions/EntitySentimentEntityLink"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Location",
+  "properties": {
+    "city": {
+      "description": "The city of the location",
+      "type": "string"
+    },
+    "country": {
+      "description": "The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.\n",
+      "type": "string"
+    },
+    "state": {
+      "description": "The state of the location",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

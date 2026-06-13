@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cluster",
+  "properties": {
+    "earliest_story": {
+      "description": "Publication date of the earliest story in cluster",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "ID of the cluster which is a unique identification",
+      "format": "int64",
+      "type": "integer"
+    },
+    "latest_story": {
+      "description": "Publication date of the latest story in cluster",
+      "format": "date-time",
+      "type": "string"
+    },
+    "location": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "representative_story": {
+      "$ref": "#/components/schemas/RepresentativeStory"
+    },
+    "story_count": {
+      "description": "Number of stories associated with the cluster",
+      "format": "int32",
+      "type": "integer"
+    },
+    "time": {
+      "description": "Time of the event",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

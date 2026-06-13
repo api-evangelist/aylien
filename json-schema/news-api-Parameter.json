@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Query defines the search query on a field",
+  "type": "object",
+  "properties": {
+    "author.id": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "author.name": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "body": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "categories.confident": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "categories.id": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "categories.level": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "categories.taxonomy": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "clusters": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "links.permalink": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.body.links.dbpedia": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.body.text": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.body.type": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.title.links.dbpedia": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.title.text": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entities.title.type": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "id": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "language": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.content.length.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.content.length.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.count.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.count.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.format": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.height.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.height.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.width.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.images.width.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.videos.count.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "media.videos.count.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "sentiment.body.polarity": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "sentiment.title.polarity": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "social.shares.count.facebook.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "social.shares.count.facebook.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "social.shares.count.reddit.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "social.shares.count.reddit.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.domain": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.id": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.links.in.count.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.links.in.count.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.locations.city": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.locations.country": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.locations.state": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.rankings.alexa.country": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.rankings.alexa.rank.max": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.rankings.alexa.rank.min": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.scopes.city": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.scopes.country": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.scopes.level": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "source.scopes.state": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "story_url": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "story_language": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "text": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "title": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "translations.en.body": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "translations.en.text": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "translations.en.title": {
+      "$ref": "#/components/schemas/Query"
+    },
+    "entity": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/NestedEntity"
+        },
+        {
+          "$ref": "#/components/schemas/Logicals"
+        }
+      ]
+    }
+  }
+}

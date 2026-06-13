@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Query defines the search query on a field",
+  "type": "object",
+  "properties": {
+    "$eq": {
+      "title": "Perform an exact match search on the given value",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "$text": {
+      "title": "Perform a text search on the given value",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "$in": {
+      "title": "Perform a search on an array of values",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      }
+    },
+    "$gt": {
+      "title": "Perform a greater than search on the given value",
+      "type": "number"
+    },
+    "$gte": {
+      "title": "Perform a greater than equal search on the given value",
+      "type": "number"
+    },
+    "$lt": {
+      "title": "Perform a less than search on the given value",
+      "type": "number"
+    },
+    "$lte": {
+      "title": "Perform a less than equal search on the given value",
+      "type": "number"
+    },
+    "$boost": {
+      "title": "Gives a weight to the field on performing the query",
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ShareCount",
+  "properties": {
+    "count": {
+      "description": "The number of shares",
+      "format": "int32",
+      "type": "integer"
+    },
+    "fetched_at": {
+      "description": "The fetched date of the shares",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

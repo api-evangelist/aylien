@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entities",
+  "properties": {
+    "body": {
+      "description": "An array of extracted entities from the story body",
+      "items": {
+        "$ref": "#/components/schemas/Entity"
+      },
+      "type": "array"
+    },
+    "title": {
+      "description": "An array of extracted entities from the story title",
+      "items": {
+        "$ref": "#/components/schemas/Entity"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StoryTranslations",
+  "description": "Translations of the story. Each language has it's own key and object",
+  "properties": {
+    "en": {
+      "$ref": "#/components/schemas/StoryTranslation"
+    }
+  },
+  "type": "object"
+}

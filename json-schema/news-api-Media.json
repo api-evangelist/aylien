@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Media",
+  "properties": {
+    "content_length": {
+      "description": "The content length of media",
+      "format": "int32",
+      "type": "integer"
+    },
+    "format": {
+      "$ref": "#/components/schemas/MediaFormat"
+    },
+    "height": {
+      "description": "The height of media",
+      "format": "int32",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/MediaType"
+    },
+    "url": {
+      "description": "A URL which points to the media file",
+      "type": "string"
+    },
+    "width": {
+      "description": "The width of media",
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

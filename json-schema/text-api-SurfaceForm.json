@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SurfaceForm",
+  "type": "object",
+  "properties": {
+    "string": {
+      "type": "string",
+      "description": "Form source"
+    },
+    "score": {
+      "type": "string",
+      "description": "Form score",
+      "format": "float"
+    },
+    "offset": {
+      "type": "number",
+      "description": "Form offset",
+      "format": "int"
+    }
+  }
+}

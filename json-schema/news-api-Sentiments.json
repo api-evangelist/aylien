@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sentiments",
+  "properties": {
+    "body": {
+      "$ref": "#/components/schemas/Sentiment"
+    },
+    "title": {
+      "$ref": "#/components/schemas/Sentiment"
+    }
+  },
+  "type": "object"
+}

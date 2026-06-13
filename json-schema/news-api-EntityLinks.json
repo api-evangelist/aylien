@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EntityLinks",
+  "properties": {
+    "dbpedia": {
+      "description": "A dbpedia resource URL (deprecated)",
+      "type": "string"
+    },
+    "wikipedia": {
+      "description": "A wikipedia resource URL",
+      "type": "string"
+    },
+    "wikidata": {
+      "description": "A wikidata resource URL",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

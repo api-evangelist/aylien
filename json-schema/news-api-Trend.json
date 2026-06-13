@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trend",
+  "properties": {
+    "count": {
+      "description": "The count of the trend",
+      "format": "int32",
+      "type": "integer"
+    },
+    "value": {
+      "description": "The value of the trend",
+      "type": "string"
+    },
+    "sentiment": {
+      "$ref": "#/components/schemas/AggregatedSentiment"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MediaType",
+  "description": "The type of media",
+  "enum": [
+    "image",
+    "video"
+  ],
+  "type": "string"
+}

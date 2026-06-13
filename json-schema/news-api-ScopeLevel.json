@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScopeLevel",
+  "description": "The scope by level",
+  "enum": [
+    "international",
+    "national",
+    "local"
+  ],
+  "type": "string"
+}

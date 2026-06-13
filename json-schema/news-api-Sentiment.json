@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sentiment",
+  "properties": {
+    "polarity": {
+      "$ref": "#/components/schemas/SentimentPolarity"
+    },
+    "score": {
+      "description": "Polarity score of the sentiment",
+      "format": "double",
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "type": "object"
+}

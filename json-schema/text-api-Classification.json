@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Classification",
+  "type": "object",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "language": {
+      "$ref": "#/definitions/GenericInputLanguage"
+    },
+    "taxonomy": {
+      "type": "string",
+      "description": "Input taxonomy"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ClassificationCategory"
+      }
+    }
+  }
+}

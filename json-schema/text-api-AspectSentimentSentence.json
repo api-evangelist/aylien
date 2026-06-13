@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AspectSentimentSentence",
+  "type": "object",
+  "description": "Aspect sentence",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Sentence text"
+    },
+    "polarity": {
+      "$ref": "#/definitions/GenericPolarity"
+    },
+    "polarity_confidence": {
+      "$ref": "#/definitions/GenericPolarityConfidence"
+    },
+    "aspects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AspectSentimentSentenceAspect"
+      }
+    }
+  }
+}

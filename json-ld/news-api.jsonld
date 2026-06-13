@@ -1,0 +1,84 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "openapi": "https://openapis.org/",
+    "aylien": "https://aylien.com/"
+  },
+  "@type": "WebAPI",
+  "@id": "https://aylien.com/news-api",
+  "name": "AYLIEN News API",
+  "description": "The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.",
+  "version": "3.0",
+  "termsOfService": "https://newsapi.aylien.com/tos",
+  "url": "https://api.aylien.com/news",
+  "provider": {
+    "@type": "Organization",
+    "name": "AYLIEN",
+    "url": "https://aylien.com"
+  },
+  "potentialAction": [
+    {
+      "@type": "EntryPoint",
+      "name": "listAutocompletes",
+      "description": "List autocompletes",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/autocompletes"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listClusters",
+      "description": "List Clusters",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/clusters"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listHistograms",
+      "description": "List histograms",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/histograms"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listRelatedStoriesPost",
+      "description": "",
+      "httpMethod": "POST",
+      "url": "https://api.aylien.com/news/related_stories"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listRelatedStoriesGet",
+      "description": "",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/related_stories"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listStories",
+      "description": "List Stories",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/stories"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "advancedListStories",
+      "description": "List Stories",
+      "httpMethod": "POST",
+      "url": "https://api.aylien.com/news/stories"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listTimeSeries",
+      "description": "List time series",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/time_series"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "listTrends",
+      "description": "List trends",
+      "httpMethod": "GET",
+      "url": "https://api.aylien.com/news/trends"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Concepts",
+  "type": "object",
+  "description": "Concepts root",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "lang": {
+      "$ref": "#/definitions/GenericInputLanguage"
+    },
+    "concepts": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Concept"
+      }
+    }
+  }
+}

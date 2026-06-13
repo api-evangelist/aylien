@@ -1,0 +1,79 @@
+[
+  {
+    "operationId": "language",
+    "method": "GET",
+    "path": "/language",
+    "description": "Detects what language a document or piece of text is written in and returns it in ISO 639-1 format.\n",
+    "parameters": []
+  },
+  {
+    "operationId": "documentSentiment",
+    "method": "GET",
+    "path": "/sentiment",
+    "description": "Detects the sentiment of a document (positive, negative or neutral) and provides a subjective or objective label to text.\n",
+    "parameters": []
+  },
+  {
+    "operationId": "concepts",
+    "method": "GET",
+    "path": "/concepts",
+    "description": "Extracts named entities, themes, and topics mentioned in a document,  disambiguates and cross-links them to DBpedia and Linked Data entities. \n",
+    "parameters": []
+  },
+  {
+    "operationId": "entities",
+    "method": "GET",
+    "path": "/entities",
+    "description": "Extracts named entities (people, organizations, products and locations) and values (URLs, emails, telephone numbers, currency amounts and percentages) mentioned in a body of text.\n",
+    "parameters": []
+  },
+  {
+    "operationId": "extractArticle",
+    "method": "GET",
+    "path": "/extract",
+    "description": "Extracts what matters from a URL, the main body of text from an article, author name, published date, embedded RSS feeds and media such as images & videos.\n",
+    "parameters": []
+  },
+  {
+    "operationId": "summarize",
+    "method": "GET",
+    "path": "/summarize",
+    "description": "Automatically summarizes an article into a few key sentences.",
+    "parameters": []
+  },
+  {
+    "operationId": "classifyIPTC",
+    "method": "GET",
+    "path": "/classify/iptc-subjectcode",
+    "description": "Classifies a piece of text or a URL according to a predefined taxonomy, using IPTC NewsCodes - International standard for categorizing news content\n",
+    "parameters": []
+  },
+  {
+    "operationId": "classifyIAB",
+    "method": "GET",
+    "path": "/classify/iab-qag",
+    "description": "Classifies a piece of text or a URL according to a predefined taxonomy, using IAB QAG - The Interactive Advertising Bureau\u2019s quality guidelines for classifying ads\n",
+    "parameters": []
+  },
+  {
+    "operationId": "hashtags",
+    "method": "GET",
+    "path": "/hashtags",
+    "description": "Automatically suggests tags that represent the theme and topics present in a document.\n",
+    "parameters": []
+  },
+  {
+    "operationId": "aspectSentiment",
+    "method": "GET",
+    "path": "/absa",
+    "description": "Identifies aspects mentioned in text and then analyzes the sentiment towards each of the aspects mentioned. Great for analyzing reviews!\n",
+    "parameters": []
+  },
+  {
+    "operationId": "entitySentiment",
+    "method": "GET",
+    "path": "/elsa",
+    "description": "Extracts mentions of named entities (Person, Organization, Location), and detects the sentiment towards each of the entities recognised. This endpoint utilizes some of the functionality of the Entity extraction and Concept extraction endpoints.\n",
+    "parameters": []
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Errors",
+  "properties": {
+    "errors": {
+      "items": {
+        "$ref": "#/components/schemas/Error"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

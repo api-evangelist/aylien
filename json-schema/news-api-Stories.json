@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Stories",
+  "properties": {
+    "next_page_cursor": {
+      "description": "The next page cursor",
+      "type": "string"
+    },
+    "stories": {
+      "description": "An array of stories",
+      "items": {
+        "$ref": "#/components/schemas/Story"
+      },
+      "type": "array"
+    },
+    "published_at.end": {
+      "description": "The end of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    },
+    "published_at.start": {
+      "description": "The start of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    },
+    "warnings": {
+      "description": "Notifies about possible issues that occurred when searching for stories",
+      "items": {
+        "$ref": "#/components/schemas/Warning"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trends",
+  "properties": {
+    "field": {
+      "description": "The field of trends",
+      "type": "string"
+    },
+    "trends": {
+      "description": "An array of trends",
+      "items": {
+        "$ref": "#/components/schemas/Trend"
+      },
+      "type": "array"
+    },
+    "published_at.end": {
+      "description": "The end of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    },
+    "published_at.start": {
+      "description": "The start of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

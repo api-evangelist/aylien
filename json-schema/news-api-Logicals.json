@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "One of the logical operators such as $and, $or, $not",
+  "type": "object",
+  "properties": {
+    "$and": {
+      "$ref": "#/components/schemas/Logical"
+    },
+    "$or": {
+      "$ref": "#/components/schemas/Logical"
+    },
+    "$not": {
+      "$ref": "#/components/schemas/Logical"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Histograms",
+  "properties": {
+    "field": {
+      "type": "string"
+    },
+    "interval.end": {
+      "description": "The end interval of the histogram",
+      "format": "int32",
+      "type": "integer"
+    },
+    "interval.start": {
+      "description": "The start interval of the histogram",
+      "format": "int32",
+      "type": "integer"
+    },
+    "interval.width": {
+      "description": "The width of the histogram",
+      "format": "int32",
+      "type": "integer"
+    },
+    "intervals": {
+      "description": "The intervals of the histograms",
+      "items": {
+        "$ref": "#/components/schemas/HistogramInterval"
+      },
+      "type": "array"
+    },
+    "published_at.end": {
+      "description": "The end of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    },
+    "published_at.start": {
+      "description": "The start of a period in which searched stories were published",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

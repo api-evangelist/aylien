@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Category",
+  "properties": {
+    "confident": {
+      "description": "It defines whether the extracted category is confident or not",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "The ID of the category",
+      "type": "string"
+    },
+    "label": {
+      "description": "The label of the category",
+      "type": "string"
+    },
+    "level": {
+      "description": "The level of the category",
+      "format": "int32",
+      "type": "integer"
+    },
+    "links": {
+      "$ref": "#/components/schemas/CategoryLinks"
+    },
+    "score": {
+      "description": "The score of the category",
+      "format": "double",
+      "type": "number"
+    },
+    "taxonomy": {
+      "$ref": "#/components/schemas/CategoryTaxonomy"
+    }
+  },
+  "type": "object"
+}

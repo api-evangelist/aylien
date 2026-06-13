@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AspectSentimentAspect",
+  "type": "object",
+  "description": "Aspect data",
+  "properties": {
+    "aspect": {
+      "$ref": "#/definitions/GenericAspect"
+    },
+    "aspect_confidence": {
+      "$ref": "#/definitions/GenericAspectConfidence"
+    },
+    "polarity": {
+      "$ref": "#/definitions/GenericPolarity"
+    },
+    "polarity_confidence": {
+      "$ref": "#/definitions/GenericPolarityConfidence"
+    },
+    "mentions": {
+      "description": "Number of mentions",
+      "type": "number"
+    },
+    "sample": {
+      "description": "Mentions sample",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Summary",
+  "type": "object",
+  "properties": {
+    "text": {
+      "$ref": "#/definitions/GenericInputText"
+    },
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Summary sentence"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Concept",
+  "type": "object",
+  "description": "Single concept",
+  "properties": {
+    "surfaceForms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SurfaceForm"
+      }
+    },
+    "support": {
+      "type": "number",
+      "description": "Support factor",
+      "format": "int"
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Concept type"
+      }
+    }
+  }
+}

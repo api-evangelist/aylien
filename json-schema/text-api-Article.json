@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Article",
+  "type": "object",
+  "properties": {
+    "author": {
+      "description": "Article author name",
+      "type": "string"
+    },
+    "image": {
+      "description": "Article image",
+      "type": "string"
+    },
+    "article": {
+      "description": "Article text",
+      "type": "string"
+    },
+    "title": {
+      "description": "Article title",
+      "type": "string"
+    },
+    "publishDate": {
+      "description": "Article publication date",
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "description": "Article tags",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "videos": {
+      "description": "Attached videos",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "feeds": {
+      "description": "Related feeds",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
