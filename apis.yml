@@ -1,7 +1,7 @@
 aid: aylien
 name: AYLIEN
 description: AYLIEN is a news intelligence and text analysis platform providing REST APIs for article extraction, sentiment analysis, entity recognition, summarization, concept detection, and NLP-enriched news aggregation from over 80,000 public and licensed sources delivering 1.4 million articles daily. Now part of Quantexa, AYLIEN enables developers, data scientists, and risk analysts to build intelligent applications powered by global news intelligence.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -22,7 +22,7 @@ apis:
   - aid: aylien:news-api
     name: AYLIEN News API
     description: The AYLIEN News API provides access to NLP-enriched news articles from over 80,000 public and licensed sources. It enables searching, filtering, and analyzing global news content with endpoints for stories, timeseries, trends, clusters, and coverages. Each article is enriched with entities, sentiment, concepts, categories, and other NLP metadata.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
     baseURL: https://api.aylien.com
     tags:
