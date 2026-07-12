@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: aylien.com
+  https: false
+- host: api.aylien.com
+  https: false
+domains:
+- domain: aylien.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

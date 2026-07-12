@@ -46,6 +46,10 @@ apis:
       - FN: AYLIEN Support
         email: newsapi-support@quantexa.com
 common:
+  - type: DomainSecurity
+    url: security/aylien-domain-security.yml
+  - type: Authentication
+    url: authentication/aylien-authentication.yml
   - type: Website
     url: https://aylien.com
   - type: Documentation

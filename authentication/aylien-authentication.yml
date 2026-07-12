@@ -1,0 +1,45 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/news-api.yaml, openapi/text-api.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: app_id
+  type: apiKey
+  in: header
+  parameter: X-AYLIEN-NewsAPI-Application-ID
+  description: X-AYLIEN-NewsAPI-Application-ID is the identifier of your server, script, or
+    program with a specific application. This parameter is required if you are accessing APIs
+    without authenticating.
+  sources:
+  - openapi/news-api.yaml
+- name: app_key
+  type: apiKey
+  in: header
+  parameter: X-AYLIEN-NewsAPI-Application-Key
+  description: X-AYLIEN-NewsAPI-Application-Key is the secret key of your server, script, or
+    program with a specific application. This parameter is required if you are accessing APIs
+    without authenticating.
+  sources:
+  - openapi/news-api.yaml
+- name: app_id
+  type: apiKey
+  in: header
+  parameter: X-AYLIEN-TextAPI-Application-ID
+  description: X-AYLIEN-TextAPI-Application-ID is the identifier of your server, script, or
+    program with a specific application. This parameter is required if you are accessing APIs
+    without authenticating.
+  sources:
+  - openapi/text-api.yaml
+- name: app_key
+  type: apiKey
+  in: header
+  parameter: X-AYLIEN-TextAPI-Application-Key
+  description: X-AYLIEN-TextAPI-Application-Key is the secret key of your server, script, or
+    program with a specific application. This parameter is required if you are accessing APIs
+    without authenticating.
+  sources:
+  - openapi/text-api.yaml
