@@ -46,6 +46,8 @@ apis:
       - FN: AYLIEN Support
         email: newsapi-support@quantexa.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/aylien-agentic-access.yml
   - type: DomainSecurity
     url: security/aylien-domain-security.yml
   - type: Authentication
