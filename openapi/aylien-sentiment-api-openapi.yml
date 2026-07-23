@@ -1,0 +1,224 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@aylien.com
+    name: API support
+    url: https://newsapi.aylien.com/
+  description: 'The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.
+
+    '
+  termsOfService: https://newsapi.aylien.com/tos
+  title: AYLIEN News Absa Sentiment API
+  version: '3.0'
+servers:
+- url: https://api.aylien.com/news
+tags:
+- name: Sentiment
+paths:
+  /sentiment:
+    get:
+      security:
+      - app_id: []
+      - app_key: []
+      summary: Detect sentiment
+      operationId: documentSentiment
+      description: 'Detects the sentiment of a document (positive, negative or neutral) and provides a subjective or objective label to text.
+
+        '
+      parameters:
+      - $ref: '#/parameters/text'
+      - $ref: '#/parameters/url'
+      - $ref: '#/parameters/language'
+      - name: mode
+        in: query
+        description: 'Analysis mode
+
+          '
+        type: string
+      responses:
+        '200':
+          $ref: '#/responses/sentiment'
+        '401':
+          $ref: '#/responses/error401_Unauthorized'
+        '404':
+          $ref: '#/responses/error404_NotFound'
+        '422':
+          $ref: '#/responses/error422_UnprocessableEntity'
+        '429':
+          $ref: '#/responses/error429_TooManyRequests'
+        '500':
+          $ref: '#/responses/error500_InternalServerError'
+      tags:
+      - Sentiment
+components:
+  securitySchemes:
+    app_id:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-ID is the identifier of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-ID
+      type: apiKey
+    app_key:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-Key is the secret key of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-Key
+      type: apiKey
+definitions:
+  GenericPolarityConfidence:
+    type: number
+    format: float
+    description: Polarity confidence (0..1)
+    minimum: 0
+    maximum: 1
+  Errors:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Error'
+  Sentiment:
+    type: object
+    properties:
+      text:
+        $ref: '#/definitions/GenericInputText'
+      polarity:
+        $ref: '#/definitions/GenericPolarity'
+      polarity_confidence:
+        $ref: '#/definitions/GenericPolarityConfidence'
+      subjectivity:
+        type: string
+        description: Detected subjectivity
+        enum:
+        - subjective
+        - unknown
+      subjectivity_confidence:
+        $ref: '#/definitions/GenericConfidence'
+  ErrorLinks:
+    type: object
+    properties:
+      about:
+        type: string
+  GenericConfidence:
+    type: number
+    format: float
+    description: Model confidence (0..1)
+    minimum: 0
+    maximum: 1
+  GenericInputText:
+    type: string
+    description: Input text
+  GenericPolarity:
+    type: string
+    description: Detected polarity
+    enum:
+    - positive
+    - negative
+    - neutral
+  Error:
+    type: object
+    properties:
+      id:
+        type: string
+      links:
+        $ref: '#/definitions/ErrorLinks'
+      status:
+        type: string
+      code:
+        type: string
+      title:
+        type: string
+      detail:
+        type: string
+parameters:
+  text:
+    name: text
+    in: query
+    description: 'Text to analyze
+
+      '
+    type: string
+  url:
+    name: url
+    in: query
+    description: 'URL to analyze
+
+      '
+    type: string
+  language:
+    name: language
+    in: query
+    description: 'Text to analyze
+
+      '
+    type: string
+    enum:
+    - en
+    - de
+    - es
+    - fr
+    - it
+responses:
+  error401_Unauthorized:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Errors'
+  error404_NotFound:
+    description: Not Found
+    schema:
+      $ref: '#/definitions/Errors'
+  error500_InternalServerError:
+    description: Internal Server Error
+    schema:
+      $ref: '#/definitions/Errors'
+  error422_UnprocessableEntity:
+    description: Unprocessable Entity
+    schema:
+      $ref: '#/definitions/Errors'
+  sentiment:
+    description: An object describing document sentiment
+    schema:
+      type: object
+      properties:
+        root:
+          $ref: '#/definitions/Sentiment'
+    headers:
+      X-RateLimit-Limit:
+        description: The number of allowed requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Remaining:
+        description: The number of remaining requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Reset:
+        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+          '
+        type: integer
+        format: int64
+  error429_TooManyRequests:
+    description: Too Many Requests
+    schema:
+      $ref: '#/definitions/Errors'
+    headers:
+      X-RateLimit-Limit:
+        description: The number of allowed requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Remaining:
+        description: The number of remaining requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Reset:
+        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+          '
+        type: integer
+        format: int64
+x-group-parameters: true

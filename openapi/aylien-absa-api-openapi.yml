@@ -1,0 +1,279 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@aylien.com
+    name: API support
+    url: https://newsapi.aylien.com/
+  description: 'The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.
+
+    '
+  termsOfService: https://newsapi.aylien.com/tos
+  title: AYLIEN News Absa API
+  version: '3.0'
+servers:
+- url: https://api.aylien.com/news
+tags:
+- name: Absa
+paths:
+  /absa:
+    get:
+      security:
+      - app_id: []
+      - app_key: []
+      summary: Aspect-based sentiment
+      operationId: aspectSentiment
+      description: 'Identifies aspects mentioned in text and then analyzes the sentiment towards each of the aspects mentioned. Great for analyzing reviews!
+
+        '
+      parameters:
+      - $ref: '#/parameters/text'
+      - $ref: '#/parameters/url'
+      - $ref: '#/parameters/language'
+      - name: domain
+        in: query
+        description: Article domain
+        type: string
+        enum:
+        - airlines
+        - cars
+        - hotels
+        - restaurants
+      responses:
+        '200':
+          $ref: '#/responses/absa'
+        '401':
+          $ref: '#/responses/error401_Unauthorized'
+        '404':
+          $ref: '#/responses/error404_NotFound'
+        '422':
+          $ref: '#/responses/error422_UnprocessableEntity'
+        '429':
+          $ref: '#/responses/error429_TooManyRequests'
+        '500':
+          $ref: '#/responses/error500_InternalServerError'
+      tags:
+      - Absa
+components:
+  securitySchemes:
+    app_id:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-ID is the identifier of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-ID
+      type: apiKey
+    app_key:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-Key is the secret key of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-Key
+      type: apiKey
+definitions:
+  Errors:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Error'
+  AspectSentiment:
+    type: object
+    properties:
+      text:
+        $ref: '#/definitions/GenericInputText'
+      domain:
+        type: string
+        description: Provided domain
+      aspects:
+        type: array
+        items:
+          $ref: '#/definitions/AspectSentimentAspect'
+      sentences:
+        type: array
+        items:
+          $ref: '#/definitions/AspectSentimentSentence'
+  AspectSentimentAspect:
+    type: object
+    description: Aspect data
+    properties:
+      aspect:
+        $ref: '#/definitions/GenericAspect'
+      aspect_confidence:
+        $ref: '#/definitions/GenericAspectConfidence'
+      polarity:
+        $ref: '#/definitions/GenericPolarity'
+      polarity_confidence:
+        $ref: '#/definitions/GenericPolarityConfidence'
+      mentions:
+        description: Number of mentions
+        type: number
+      sample:
+        description: Mentions sample
+        type: array
+        items:
+          type: string
+  GenericPolarity:
+    type: string
+    description: Detected polarity
+    enum:
+    - positive
+    - negative
+    - neutral
+  AspectSentimentSentence:
+    type: object
+    description: Aspect sentence
+    properties:
+      text:
+        type: string
+        description: Sentence text
+      polarity:
+        $ref: '#/definitions/GenericPolarity'
+      polarity_confidence:
+        $ref: '#/definitions/GenericPolarityConfidence'
+      aspects:
+        type: array
+        items:
+          $ref: '#/definitions/AspectSentimentSentenceAspect'
+  GenericPolarityConfidence:
+    type: number
+    format: float
+    description: Polarity confidence (0..1)
+    minimum: 0
+    maximum: 1
+  GenericAspect:
+    description: Detected aspect
+    type: string
+    enum:
+    - subjective
+    - unknown
+  ErrorLinks:
+    type: object
+    properties:
+      about:
+        type: string
+  AspectSentimentSentenceAspect:
+    type: object
+    description: Aspect data per sentence
+    properties:
+      aspect:
+        $ref: '#/definitions/GenericAspect'
+      aspect_confidence:
+        $ref: '#/definitions/GenericAspectConfidence'
+      polarity:
+        $ref: '#/definitions/GenericPolarity'
+      polarity_confidence:
+        $ref: '#/definitions/GenericPolarityConfidence'
+  GenericInputText:
+    type: string
+    description: Input text
+  Error:
+    type: object
+    properties:
+      id:
+        type: string
+      links:
+        $ref: '#/definitions/ErrorLinks'
+      status:
+        type: string
+      code:
+        type: string
+      title:
+        type: string
+      detail:
+        type: string
+  GenericAspectConfidence:
+    type: number
+    format: float
+    description: Aspect confidence (0..1)
+    minimum: 0
+    maximum: 1
+parameters:
+  text:
+    name: text
+    in: query
+    description: 'Text to analyze
+
+      '
+    type: string
+  url:
+    name: url
+    in: query
+    description: 'URL to analyze
+
+      '
+    type: string
+  language:
+    name: language
+    in: query
+    description: 'Text to analyze
+
+      '
+    type: string
+    enum:
+    - en
+    - de
+    - es
+    - fr
+    - it
+responses:
+  error422_UnprocessableEntity:
+    description: Unprocessable Entity
+    schema:
+      $ref: '#/definitions/Errors'
+  error500_InternalServerError:
+    description: Internal Server Error
+    schema:
+      $ref: '#/definitions/Errors'
+  error429_TooManyRequests:
+    description: Too Many Requests
+    schema:
+      $ref: '#/definitions/Errors'
+    headers:
+      X-RateLimit-Limit:
+        description: The number of allowed requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Remaining:
+        description: The number of remaining requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Reset:
+        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+          '
+        type: integer
+        format: int64
+  error401_Unauthorized:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Errors'
+  error404_NotFound:
+    description: Not Found
+    schema:
+      $ref: '#/definitions/Errors'
+  absa:
+    description: An object describing aspect-based sentiment
+    schema:
+      type: object
+      properties:
+        root:
+          $ref: '#/definitions/AspectSentiment'
+    headers:
+      X-RateLimit-Limit:
+        description: The number of allowed requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Remaining:
+        description: The number of remaining requests in the current period.
+        type: integer
+        format: int32
+      X-RateLimit-Reset:
+        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+          '
+        type: integer
+        format: int64
+x-group-parameters: true

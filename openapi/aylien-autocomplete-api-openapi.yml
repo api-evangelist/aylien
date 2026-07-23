@@ -1,0 +1,242 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@aylien.com
+    name: API support
+    url: https://newsapi.aylien.com/
+  description: 'The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.
+
+    '
+  termsOfService: https://newsapi.aylien.com/tos
+  title: AYLIEN News Absa autocomplete API
+  version: '3.0'
+servers:
+- url: https://api.aylien.com/news
+tags:
+- name: autocomplete
+paths:
+  /autocompletes:
+    get:
+      tags:
+      - autocomplete
+      description: 'The autocompletes endpoint a string of characters provided to it, and then returns suggested terms that are the most likely full words or strings. The terms returned by the News API are based on parameters the type parameters you can see below. For example, if you provide the autocompletes endpoint with the term `New York C` and select the type `dbpedia_resources`, the API will return links to the DBpedia resources `New_York_City`, `New_York_City_Subway`, `New_York_City_Police_Department`, and so on.
+
+        '
+      operationId: listAutocompletes
+      parameters:
+      - description: 'This parameter is used for defining the type of autocompletes.
+
+          '
+        example: source_names
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - source_names
+          - source_domains
+          - entity_types
+          - dbpedia_resources
+          type: string
+      - description: 'This parameter is used for finding autocomplete objects that contain the specified value.
+
+          '
+        example: News
+        in: query
+        name: term
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      - description: 'This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.
+
+          '
+        in: query
+        name: language
+        schema:
+          default: en
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          - pt
+          nullable: true
+          type: string
+      - $ref: '#/components/parameters/per_page'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autocompletes'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Autocompletes'
+          description: An object including an array of autocompletes
+          headers:
+            X-RateLimit-Limit:
+              description: The number of allowed requests in the current period.
+              schema:
+                format: int32
+                type: integer
+            X-RateLimit-Remaining:
+              description: The number of remaining requests in the current period.
+              schema:
+                format: int32
+                type: integer
+            X-RateLimit-Reset:
+              description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+                '
+              schema:
+                format: int64
+                type: integer
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          description: Unprocessable Entity
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          description: Too Many Requests
+          headers:
+            X-RateLimit-Limit:
+              description: The number of allowed requests in the current period.
+              schema:
+                format: int32
+                type: integer
+            X-RateLimit-Remaining:
+              description: The number of remaining requests in the current period.
+              schema:
+                format: int32
+                type: integer
+            X-RateLimit-Reset:
+              description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+                '
+              schema:
+                format: int64
+                type: integer
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          description: Internal Server Error
+      security:
+      - app_id: []
+      - app_key: []
+      summary: List autocompletes
+components:
+  schemas:
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
+          type: string
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
+    Autocomplete:
+      properties:
+        id:
+          description: ID of the autocomplete
+          type: string
+        text:
+          description: Text of the autocomplete
+          type: string
+      type: object
+    Autocompletes:
+      properties:
+        autocompletes:
+          description: An array of autocompletes
+          items:
+            $ref: '#/components/schemas/Autocomplete'
+          type: array
+      type: object
+    Error:
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        title:
+          type: string
+      type: object
+  parameters:
+    per_page:
+      description: 'This parameter is used for specifying number of items in each page.
+
+        '
+      in: query
+      name: per_page
+      schema:
+        default: 3
+        format: int32
+        maximum: 100
+        minimum: 1
+        nullable: true
+        type: integer
+  securitySchemes:
+    app_id:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-ID is the identifier of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-ID
+      type: apiKey
+    app_key:
+      x-auth-id-alias: true
+      description: 'X-AYLIEN-NewsAPI-Application-Key is the secret key of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+      name: X-AYLIEN-NewsAPI-Application-Key
+      type: apiKey
+x-group-parameters: true
