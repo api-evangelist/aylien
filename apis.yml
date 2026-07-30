@@ -1,7 +1,20 @@
 aid: aylien
 name: AYLIEN
 description: AYLIEN is a news intelligence and text analysis platform providing REST APIs for article extraction, sentiment analysis, entity recognition, summarization, concept detection, and NLP-enriched news aggregation from over 80,000 public and licensed sources delivering 1.4 million articles daily. Now part of Quantexa, AYLIEN enables developers, data scientists, and risk analysts to build intelligent applications powered by global news intelligence.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aylien.png
 url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -19,32 +32,346 @@ tags:
   - Summarization
   - Concept Detection
 apis:
-  - aid: aylien:news-api
-    name: AYLIEN News API
-    description: The AYLIEN News API provides access to NLP-enriched news articles from over 80,000 public and licensed sources. It enables searching, filtering, and analyzing global news content with endpoints for stories, timeseries, trends, clusters, and coverages. Each article is enriched with entities, sentiment, concepts, categories, and other NLP metadata.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
-    baseURL: https://api.aylien.com
-    tags:
-      - News
-      - NLP
-      - Sentiment Analysis
-      - Entity Recognition
-      - News Intelligence
-    properties:
-      - type: Documentation
-        url: https://docs.aylien.com/newsapi/v6/getting-started/
-      - type: OpenAPI
-        url: https://github.com/AYLIEN/apis
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
-    contact:
-      - FN: AYLIEN Support
-        email: newsapi-support@quantexa.com
+- aid: aylien:aylien-absa-api
+  name: AYLIEN Absa API
+  description: The Absa API from AYLIEN — 1 operation(s) for absa.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Absa
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-absa-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-autocomplete-api
+  name: AYLIEN autocomplete API
+  description: The autocomplete API from AYLIEN — 1 operation(s) for autocomplete.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - autocomplete
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-autocomplete-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-classify-api
+  name: AYLIEN Classify API
+  description: The Classify API from AYLIEN — 2 operation(s) for classify.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Classify
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-classify-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-cluster-api
+  name: AYLIEN cluster API
+  description: The cluster API from AYLIEN — 1 operation(s) for cluster.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - cluster
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-cluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-concepts-api
+  name: AYLIEN Concepts API
+  description: The Concepts API from AYLIEN — 1 operation(s) for concepts.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-concepts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-elsa-api
+  name: AYLIEN Elsa API
+  description: The Elsa API from AYLIEN — 1 operation(s) for elsa.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Elsa
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-elsa-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-entities-api
+  name: AYLIEN Entities API
+  description: The Entities API from AYLIEN — 1 operation(s) for entities.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-entities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-extract-api
+  name: AYLIEN Extract API
+  description: The Extract API from AYLIEN — 1 operation(s) for extract.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Extract
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-extract-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-hashtags-api
+  name: AYLIEN Hashtags API
+  description: The Hashtags API from AYLIEN — 1 operation(s) for hashtags.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Hashtags
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-hashtags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-histogram-api
+  name: AYLIEN histogram API
+  description: The histogram API from AYLIEN — 1 operation(s) for histogram.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - histogram
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-histogram-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-language-api
+  name: AYLIEN Language API
+  description: The Language API from AYLIEN — 1 operation(s) for language.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-language-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-related-story-api
+  name: AYLIEN related_story API
+  description: The related_story API from AYLIEN — 1 operation(s) for related_story.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - related_story
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-related-story-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-sentiment-api
+  name: AYLIEN Sentiment API
+  description: The Sentiment API from AYLIEN — 1 operation(s) for sentiment.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Sentiment
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-sentiment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-story-api
+  name: AYLIEN story API
+  description: The story API from AYLIEN — 1 operation(s) for story.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - story
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-story-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-summarize-api
+  name: AYLIEN Summarize API
+  description: The Summarize API from AYLIEN — 1 operation(s) for summarize.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - Summarize
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-summarize-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-time-series-api
+  name: AYLIEN time_series API
+  description: The time_series API from AYLIEN — 1 operation(s) for time_series.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - time_series
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-time-series-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
+- aid: aylien:aylien-trends-api
+  name: AYLIEN trends API
+  description: The trends API from AYLIEN — 1 operation(s) for trends.
+  humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
+  baseURL: https://api.aylien.com
+  tags:
+  - trends
+  properties:
+  - type: OpenAPI
+    url: openapi/aylien-trends-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aylien.com/newsapi/v6/getting-started/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/aylien-agentic-access.yml
