@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa Language API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Language",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detect language",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/language",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detects what language a document or piece of text is written in and returns it in ISO 639-1 format.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

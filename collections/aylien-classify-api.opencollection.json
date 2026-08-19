@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa Classify API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classify",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Classification by IPTC NewsCodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/classify/iptc-subjectcode",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Classifies a piece of text or a URL according to a predefined taxonomy, using IPTC NewsCodes - International standard for categorizing news content\n"
+        },
+        {
+          "info": {
+            "name": "Classification by IAB QAG",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/classify/iab-qag",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Classifies a piece of text or a URL according to a predefined taxonomy, using IAB QAG - The Interactive Advertising Bureau’s quality guidelines for classifying ads\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

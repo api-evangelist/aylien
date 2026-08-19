@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa Extract API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extract",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Article Extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/extract",
+            "params": [
+              {
+                "name": "html",
+                "value": "",
+                "type": "query",
+                "description": "HTML to analyze"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Extracts what matters from a URL, the main body of text from an article, author name, published date, embedded RSS feeds and media such as images & videos.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

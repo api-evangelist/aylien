@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa autocomplete API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "autocomplete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List autocompletes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/autocompletes",
+            "params": [
+              {
+                "name": "type",
+                "value": "source_names",
+                "type": "query",
+                "description": "This parameter is used for defining the type of autocompletes.\n"
+              },
+              {
+                "name": "term",
+                "value": "News",
+                "type": "query",
+                "description": "This parameter is used for finding autocomplete objects that contain the specified value.\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.\n"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for specifying number of items in each page.\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The autocompletes endpoint a string of characters provided to it, and then returns suggested terms that are the most likely full words or strings. The terms returned by the News API are based on parameters the type parameters you can see below. For example, if you provide the autocompletes endpoint with the term `New York C` and select the type `dbpedia_resources`, the API will return links to the DBpedia resources `New_York_City`, `New_York_City_Subway`, `New_York_City_Police_Department`, and s"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

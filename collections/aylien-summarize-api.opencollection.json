@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa Summarize API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Summarize",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Summarization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/summarize",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "sentences_number",
+                "value": "",
+                "type": "query",
+                "description": "Summary length (number of sentences)\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Automatically summarizes an article into a few key sentences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

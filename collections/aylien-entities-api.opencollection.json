@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa Entities API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Entity extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/entities",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Extracts named entities (people, organizations, products and locations) and values (URLs, emails, telephone numbers, currency amounts and percentages) mentioned in a body of text.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

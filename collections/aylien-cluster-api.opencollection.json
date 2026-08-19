@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa cluster API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/clusters",
+            "params": [
+              {
+                "name": "id[]",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters by cluster id.\n"
+              },
+              {
+                "name": "!id[]",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for excluding clusters by cluster id.\n"
+              },
+              {
+                "name": "story_count.min",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters with more than or equal to a specific amount of stories associated with them.\n"
+              },
+              {
+                "name": "story_count.max",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters with less than or equal to a specific amount of stories associated with them.\n"
+              },
+              {
+                "name": "time.start",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose creation time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "time.end",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose creation time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "earliest_story.start",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose publication date of its earliest story is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "earliest_story.end",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose publication date of its earliest story is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "latest_story.start",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose publication date of its latest story is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "latest_story.end",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters whose publication date of its latest story is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+              },
+              {
+                "name": "location.country",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+              },
+              {
+                "name": "!location.country",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for excluding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+              },
+              {
+                "name": "return[]",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for specifying return fields."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for changing the order column of the results. You can read about sorting results [here](https://newsapi.aylien.com/docs/sorting-results).\n"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for changing the order direction of the result. You can read about sorting results [here](https://newsapi.aylien.com/docs/sorting-results).\n"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for finding a specific page. You can read more about pagination of results [here](https://newsapi.aylien.com/docs/pagination-of-results).\n"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used for specifying number of items in each page You can read more about pagination of results [here](https://newsapi.aylien.com/docs/pagination-of-results)\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The clusters endpoint is used to return clusters based on parameters you set in your query.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

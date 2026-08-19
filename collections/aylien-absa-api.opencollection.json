@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AYLIEN News Absa API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Absa",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Aspect-based sentiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.aylien.com/news/absa",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to analyze\n"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Text to analyze\n"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Article domain"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-AYLIEN-NewsAPI-Application-ID",
+              "value": "{{X-AYLIEN-NewsAPI-Application-ID}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Identifies aspects mentioned in text and then analyzes the sentiment towards each of the aspects mentioned. Great for analyzing reviews!\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

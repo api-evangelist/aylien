@@ -1,0 +1,1044 @@
+{
+  "item": [
+    {
+      "id": "c9880f04-9627-42d9-9da4-3ab0f6e0c2e5",
+      "name": "cluster",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "201a1691-0512-4a01-bfbd-878da2d5a448",
+          "name": "List Clusters",
+          "request": {
+            "name": "List Clusters",
+            "description": {
+              "content": "The clusters endpoint is used to return clusters based on parameters you set in your query.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clusters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id[]",
+                  "value": "<long>",
+                  "description": "This parameter is used for finding clusters by cluster id.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "id[]",
+                  "value": "<long>",
+                  "description": "This parameter is used for finding clusters by cluster id.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "!id[]",
+                  "value": "<long>",
+                  "description": "This parameter is used for excluding clusters by cluster id.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "!id[]",
+                  "value": "<long>",
+                  "description": "This parameter is used for excluding clusters by cluster id.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "story_count.min",
+                  "value": "<integer>",
+                  "description": "This parameter is used for finding clusters with more than or equal to a specific amount of stories associated with them.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "story_count.max",
+                  "value": "<integer>",
+                  "description": "This parameter is used for finding clusters with less than or equal to a specific amount of stories associated with them.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "time.start",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose creation time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "time.end",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose creation time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "earliest_story.start",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose publication date of its earliest story is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "earliest_story.end",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose publication date of its earliest story is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "latest_story.start",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose publication date of its latest story is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "latest_story.end",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters whose publication date of its latest story is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "location.country",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "location.country",
+                  "value": "<string>",
+                  "description": "This parameter is used for finding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "!location.country",
+                  "value": "<string>",
+                  "description": "This parameter is used for excluding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "!location.country",
+                  "value": "<string>",
+                  "description": "This parameter is used for excluding clusters belonging to a specific country. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "return[]",
+                  "value": "<string>",
+                  "description": "This parameter is used for specifying return fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "return[]",
+                  "value": "<string>",
+                  "description": "This parameter is used for specifying return fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "published_at",
+                  "description": "This parameter is used for changing the order column of the results. You can read about sorting results [here](https://newsapi.aylien.com/docs/sorting-results).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "desc",
+                  "description": "This parameter is used for changing the order direction of the result. You can read about sorting results [here](https://newsapi.aylien.com/docs/sorting-results).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "*",
+                  "description": "This parameter is used for finding a specific page. You can read more about pagination of results [here](https://newsapi.aylien.com/docs/pagination-of-results).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "This parameter is used for specifying number of items in each page You can read more about pagination of results [here](https://newsapi.aylien.com/docs/pagination-of-results)\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-AYLIEN-NewsAPI-Application-ID"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a86a82a-76f2-4a46-972a-c9e8868454ac",
+              "name": "An object including an array of clusters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of allowed requests in the current period.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "9925"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of remaining requests in the current period.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9925"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).\n",
+                  "key": "X-RateLimit-Reset",
+                  "value": "7208"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster_count\": 4092,\n  \"clusters\": [\n    {\n      \"earliest_story\": \"1963-03-06T14:46:12.663Z\",\n      \"id\": 2654,\n      \"latest_story\": \"1993-08-06T13:47:24.198Z\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"state\": \"string\"\n      },\n      \"representative_story\": {\n        \"id\": 909,\n        \"permalink\": \"string\",\n        \"published_at\": \"2015-10-24T18:01:32.452Z\",\n        \"title\": \"string\"\n      },\n      \"story_count\": 8716,\n      \"time\": \"2008-09-19T16:35:39.551Z\"\n    },\n    {\n      \"earliest_story\": \"1976-02-03T11:45:43.601Z\",\n      \"id\": 717,\n      \"latest_story\": \"1956-12-20T20:18:12.503Z\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"state\": \"string\"\n      },\n      \"representative_story\": {\n        \"id\": 1700,\n        \"permalink\": \"string\",\n        \"published_at\": \"1963-08-23T07:22:18.644Z\",\n        \"title\": \"string\"\n      },\n      \"story_count\": 7538,\n      \"time\": \"1956-05-29T08:23:13.549Z\"\n    }\n  ],\n  \"next_page_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c07b6c0e-90a7-4ad6-b29c-e40ccd84eac0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d1f979a-2e4d-4cf0-a3e5-c312f4a071f8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f889774a-5b51-4372-890d-57b5989b867f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "008669a7-4319-4bb4-ab43-e68055dab2d4",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of allowed requests in the current period.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "9925"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of remaining requests in the current period.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9925"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).\n",
+                  "key": "X-RateLimit-Reset",
+                  "value": "7208"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64e7ed1c-49ec-4d97-afe0-921bca249f2b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "!id[]",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "story_count.min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "story_count.max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "earliest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latest_story.end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "!location.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "return[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "published_at"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "*"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-AYLIEN-NewsAPI-Application-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"id\": \"string\",\n      \"links\": {\n        \"about\": \"string\",\n        \"docs\": \"string\"\n      },\n      \"status\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.aylien.com/news",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d91f7437-a31a-4283-8850-45634992fdce",
+    "name": "AYLIEN News Absa cluster API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.\n\n\nContact Support:\n Name: API support\n Email: support@aylien.com",
+      "type": "text/plain"
+    }
+  }
+}
