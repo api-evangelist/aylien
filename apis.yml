@@ -58,6 +58,8 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
+  - Autocomplete
+  tags_raw:
   - autocomplete
   properties:
   - type: OpenAPI
@@ -98,6 +100,8 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
+  - Cluster
+  tags_raw:
   - cluster
   properties:
   - type: OpenAPI
@@ -257,7 +261,8 @@ apis:
   description: The related_story API from AYLIEN — 1 operation(s) for related_story.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
-  tags:
+  tags: []
+  tags_raw:
   - related_story
   properties:
   - type: OpenAPI
@@ -298,6 +303,8 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
+  - Story
+  tags_raw:
   - story
   properties:
   - type: OpenAPI
@@ -338,6 +345,8 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
+  - Time Series
+  tags_raw:
   - time_series
   properties:
   - type: OpenAPI
@@ -358,6 +367,8 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
+  - Trends
+  tags_raw:
   - trends
   properties:
   - type: OpenAPI
