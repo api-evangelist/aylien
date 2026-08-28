@@ -1,6 +1,18 @@
 aid: aylien
 name: AYLIEN
 description: AYLIEN is a news intelligence and text analysis platform providing REST APIs for article extraction, sentiment analysis, entity recognition, summarization, concept detection, and NLP-enriched news aggregation from over 80,000 public and licensed sources delivering 1.4 million articles daily. Now part of Quantexa, AYLIEN enables developers, data scientists, and risk analysts to build intelligent applications powered by global news intelligence.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
