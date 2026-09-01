@@ -70,7 +70,7 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
-  - autocomplete
+  - Autocomplete
   tags_raw:
   - autocomplete
   properties:
@@ -356,7 +356,8 @@ apis:
   description: The time_series API from AYLIEN — 1 operation(s) for time_series.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
-  tags: []
+  tags:
+  - Time Series
   tags_raw:
   - time_series
   properties:
@@ -378,7 +379,7 @@ apis:
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
   tags:
-  - trends
+  - Trends
   tags_raw:
   - trends
   properties:
