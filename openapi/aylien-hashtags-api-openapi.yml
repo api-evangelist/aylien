@@ -1,17 +1,15 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  contact:
-    email: support@aylien.com
-    name: API support
-    url: https://newsapi.aylien.com/
-  description: 'The AYLIEN News API is the most powerful way of sourcing, searching and syndicating analyzed and enriched news content. It is accessed by sending HTTP requests to our server, which returns information to your client.
-
-    '
+  title: AYLIEN Text Hashtags API
+  description: The AYLIEN Text Analysis API is a package of Natural Language Processing and Machine Learning-powered APIs for analyzing and extracting various kinds of information from textual content.
   termsOfService: https://newsapi.aylien.com/tos
-  title: AYLIEN News Absa Hashtags API
-  version: '3.0'
+  contact:
+    name: API support
+    url: https://aylien.com/text-api/
+    email: support@aylien.com
+  version: '1.0'
 servers:
-- url: https://api.aylien.com/news
+- url: https://api.aylien.com/api/v1
 tags:
 - name: Hashtags
 paths:
@@ -22,182 +20,219 @@ paths:
       - app_key: []
       summary: Hashtag suggestion
       operationId: hashtags
-      description: 'Automatically suggests tags that represent the theme and topics present in a document.
-
-        '
+      description: Automatically suggests tags that represent the theme and topics present in a document.
       parameters:
-      - $ref: '#/parameters/text'
-      - $ref: '#/parameters/url'
-      - $ref: '#/parameters/language'
+      - $ref: '#/components/parameters/text'
+      - $ref: '#/components/parameters/url'
+      - $ref: '#/components/parameters/language'
       responses:
         '200':
-          $ref: '#/responses/hashtags'
+          $ref: '#/components/responses/hashtags'
         '401':
-          $ref: '#/responses/error401_Unauthorized'
+          $ref: '#/components/responses/error401_Unauthorized'
         '404':
-          $ref: '#/responses/error404_NotFound'
+          $ref: '#/components/responses/error404_NotFound'
         '422':
-          $ref: '#/responses/error422_UnprocessableEntity'
+          $ref: '#/components/responses/error422_UnprocessableEntity'
         '429':
-          $ref: '#/responses/error429_TooManyRequests'
+          $ref: '#/components/responses/error429_TooManyRequests'
         '500':
-          $ref: '#/responses/error500_InternalServerError'
+          $ref: '#/components/responses/error500_InternalServerError'
       tags:
       - Hashtags
 components:
-  securitySchemes:
-    app_id:
-      x-auth-id-alias: true
-      description: 'X-AYLIEN-NewsAPI-Application-ID is the identifier of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
-
-        '
-      in: header
-      name: X-AYLIEN-NewsAPI-Application-ID
-      type: apiKey
-    app_key:
-      x-auth-id-alias: true
-      description: 'X-AYLIEN-NewsAPI-Application-Key is the secret key of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
-
-        '
-      in: header
-      name: X-AYLIEN-NewsAPI-Application-Key
-      type: apiKey
-definitions:
-  GenericInputLanguage:
-    type: string
-    description: Input language
-    enum:
-    - en
-    - de
-    - es
-    - fr
-    - it
-  Errors:
-    type: object
-    properties:
-      errors:
-        type: array
-        items:
-          $ref: '#/definitions/Error'
-  ErrorLinks:
-    type: object
-    properties:
-      about:
-        type: string
-  Hashtags:
-    type: object
-    properties:
-      text:
-        $ref: '#/definitions/GenericInputText'
-      language:
-        $ref: '#/definitions/GenericInputLanguage'
-      hashtags:
-        type: array
-        description: Detected hashtags
-        items:
-          type: string
-  GenericInputText:
-    type: string
-    description: Input text
-  Error:
-    type: object
-    properties:
-      id:
-        type: string
-      links:
-        $ref: '#/definitions/ErrorLinks'
-      status:
-        type: string
-      code:
-        type: string
-      title:
-        type: string
-      detail:
-        type: string
-parameters:
-  text:
-    name: text
-    in: query
-    description: 'Text to analyze
-
-      '
-    type: string
-  url:
-    name: url
-    in: query
-    description: 'URL to analyze
-
-      '
-    type: string
-  language:
-    name: language
-    in: query
-    description: 'Text to analyze
-
-      '
-    type: string
-    enum:
-    - en
-    - de
-    - es
-    - fr
-    - it
-responses:
-  error401_Unauthorized:
-    description: Unauthorized
-    schema:
-      $ref: '#/definitions/Errors'
-  error404_NotFound:
-    description: Not Found
-    schema:
-      $ref: '#/definitions/Errors'
-  error500_InternalServerError:
-    description: Internal Server Error
-    schema:
-      $ref: '#/definitions/Errors'
-  hashtags:
-    description: An object describing suggested hashtags
-    schema:
+  schemas:
+    Error:
       type: object
       properties:
-        root:
-          $ref: '#/definitions/Hashtags'
-    headers:
-      X-RateLimit-Limit:
-        description: The number of allowed requests in the current period.
-        type: integer
-        format: int32
-      X-RateLimit-Remaining:
-        description: The number of remaining requests in the current period.
-        type: integer
-        format: int32
-      X-RateLimit-Reset:
-        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    GenericInputText:
+      type: string
+      description: Input text
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    Hashtags:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        language:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        hashtags:
+          type: array
+          description: Detected hashtags
+          items:
+            type: string
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+  responses:
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
 
-          '
-        type: integer
-        format: int64
-  error422_UnprocessableEntity:
-    description: Unprocessable Entity
-    schema:
-      $ref: '#/definitions/Errors'
-  error429_TooManyRequests:
-    description: Too Many Requests
-    schema:
-      $ref: '#/definitions/Errors'
-    headers:
-      X-RateLimit-Limit:
-        description: The number of allowed requests in the current period.
-        type: integer
-        format: int32
-      X-RateLimit-Remaining:
-        description: The number of remaining requests in the current period.
-        type: integer
-        format: int32
-      X-RateLimit-Reset:
-        description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+            '
+          schema:
+            type: integer
+            format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    hashtags:
+      description: An object describing suggested hashtags
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
 
-          '
-        type: integer
-        format: int64
-x-group-parameters: true
+            '
+          schema:
+            type: integer
+            format: int64
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              root:
+                $ref: '#/components/schemas/Hashtags'
+        text/xml:
+          schema:
+            type: object
+            properties:
+              root:
+                $ref: '#/components/schemas/Hashtags'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
+  securitySchemes:
+    app_id:
+      type: apiKey
+      name: X-AYLIEN-TextAPI-Application-ID
+      description: 'X-AYLIEN-TextAPI-Application-ID is the identifier of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
+    app_key:
+      type: apiKey
+      name: X-AYLIEN-TextAPI-Application-Key
+      description: 'X-AYLIEN-TextAPI-Application-Key is the secret key of your server, script, or program with a specific application. This parameter is required if you are accessing APIs without authenticating.
+
+        '
+      in: header
