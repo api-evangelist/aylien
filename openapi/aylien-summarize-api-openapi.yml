@@ -49,57 +49,7 @@ paths:
       tags:
       - Summarize
 components:
-  schemas:
-    Summary:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        sentences:
-          type: array
-          items:
-            type: string
-            description: Summary sentence
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    GenericInputText:
-      type: string
-      description: Input text
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
   responses:
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     summarize:
       description: An object describing document summary
       headers:
@@ -133,8 +83,8 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Summary'
-    error404_NotFound:
-      description: Not Found
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -169,8 +119,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
+    error404_NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -187,19 +137,20 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
   parameters:
     text:
       name: text
       in: query
       description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
 
         '
       schema:
@@ -218,6 +169,55 @@ components:
         - es
         - fr
         - it
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    Summary:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        sentences:
+          type: array
+          items:
+            type: string
+            description: Summary sentence
+    GenericInputText:
+      type: string
+      description: Input text
   securitySchemes:
     app_id:
       type: apiKey

@@ -52,60 +52,12 @@ paths:
       - Absa
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    GenericInputText:
-      type: string
-      description: Input text
     GenericPolarityConfidence:
       type: number
       format: float
       description: Polarity confidence (0..1)
       minimum: 0
       maximum: 1
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    GenericPolarity:
-      type: string
-      description: Detected polarity
-      enum:
-      - positive
-      - negative
-      - neutral
-    GenericAspectConfidence:
-      type: number
-      format: float
-      description: Aspect confidence (0..1)
-      minimum: 0
-      maximum: 1
-    AspectSentimentSentenceAspect:
-      type: object
-      description: Aspect data per sentence
-      properties:
-        aspect:
-          $ref: '#/components/schemas/GenericAspect'
-        aspect_confidence:
-          $ref: '#/components/schemas/GenericAspectConfidence'
-        polarity:
-          $ref: '#/components/schemas/GenericPolarity'
-        polarity_confidence:
-          $ref: '#/components/schemas/GenericPolarityConfidence'
     AspectSentimentSentence:
       type: object
       description: Aspect sentence
@@ -121,6 +73,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AspectSentimentSentenceAspect'
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    AspectSentiment:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        domain:
+          type: string
+          description: Provided domain
+        aspects:
+          type: array
+          items:
+            $ref: '#/components/schemas/AspectSentimentAspect'
+        sentences:
+          type: array
+          items:
+            $ref: '#/components/schemas/AspectSentimentSentence'
     AspectSentimentAspect:
       type: object
       description: Aspect data
@@ -141,12 +124,12 @@ components:
           type: array
           items:
             type: string
-    GenericAspect:
-      description: Detected aspect
-      type: string
-      enum:
-      - subjective
-      - unknown
+    GenericAspectConfidence:
+      type: number
+      format: float
+      description: Aspect confidence (0..1)
+      minimum: 0
+      maximum: 1
     Errors:
       type: object
       properties:
@@ -154,63 +137,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    AspectSentiment:
+    ErrorLinks:
       type: object
       properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        domain:
+        about:
           type: string
-          description: Provided domain
-        aspects:
-          type: array
-          items:
-            $ref: '#/components/schemas/AspectSentimentAspect'
-        sentences:
-          type: array
-          items:
-            $ref: '#/components/schemas/AspectSentimentSentence'
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
+    GenericInputText:
+      type: string
+      description: Input text
+    GenericAspect:
+      description: Detected aspect
+      type: string
+      enum:
+      - subjective
+      - unknown
+    GenericPolarity:
+      type: string
+      description: Detected polarity
+      enum:
+      - positive
+      - negative
+      - neutral
+    AspectSentimentSentenceAspect:
+      type: object
+      description: Aspect data per sentence
+      properties:
+        aspect:
+          $ref: '#/components/schemas/GenericAspect'
+        aspect_confidence:
+          $ref: '#/components/schemas/GenericAspectConfidence'
+        polarity:
+          $ref: '#/components/schemas/GenericPolarity'
+        polarity_confidence:
+          $ref: '#/components/schemas/GenericPolarityConfidence'
   responses:
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -240,24 +200,6 @@ components:
             $ref: '#/components/schemas/Errors'
     error500_InternalServerError:
       description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -298,6 +240,64 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/AspectSentiment'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
   securitySchemes:
     app_id:
       type: apiKey

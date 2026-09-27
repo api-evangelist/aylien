@@ -41,74 +41,40 @@ paths:
       tags:
       - Entities
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    GenericInputText:
-      type: string
-      description: Input text
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    Entities:
-      type: object
-      description: Entities root
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        language:
-          $ref: '#/components/schemas/GenericInputLanguage'
-        entities:
-          type: object
-          properties:
-            keyword:
-              type: array
-              items:
-                description: Detected entity
-                type: string
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
   responses:
     error422_UnprocessableEntity:
       description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error404_NotFound:
-      description: Not Found
       content:
         application/json:
           schema:
@@ -136,6 +102,33 @@ components:
           schema:
             type: integer
             format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -176,55 +169,62 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Entities'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
+  schemas:
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    Entities:
+      type: object
+      description: Entities root
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        language:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        entities:
+          type: object
+          properties:
+            keyword:
+              type: array
+              items:
+                description: Detected entity
+                type: string
+    GenericInputText:
+      type: string
+      description: Input text
   securitySchemes:
     app_id:
       type: apiKey

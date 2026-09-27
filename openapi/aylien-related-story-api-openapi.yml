@@ -348,25 +348,13 @@ paths:
       x-summary-source: derived
 components:
   parameters:
-    media_images_width_min:
-      description: 'This parameter is used for finding stories whose width of images are greater than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.width.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notentities_title_links_dbpedia:
-      description: 'This parameter is used to exclude stories based on the specified entities dbpedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    clusters:
+      description: 'This parameter is used for finding stories with belonging to one of clusters in a specific set of clusters You can read more about working with clustering [here](https://newsapi.aylien.com/docs/working-with-clustering).
 
         '
       explode: true
       in: query
-      name: '!entities.title.links.dbpedia[]'
+      name: clusters[]
       schema:
         items:
           type: string
@@ -374,35 +362,295 @@ components:
         - array
         - 'null'
       style: form
-    notauthor_name:
-      description: 'This parameter is used for excluding stories whose author full name contains the specified value.
-
-        '
-      in: query
-      name: '!author.name'
-      schema:
-        type:
-        - string
-        - 'null'
-    story_url:
-      description: An article or webpage
-      in: query
-      name: story_url
-      schema:
-        type:
-        - string
-        - 'null'
-    notauthor_id:
-      description: 'This parameter is used for excluding stories whose author id is the specified value.
+    entities_title_type:
+      description: 'This parameter is used to find stories based on the specified entities `type` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: '!author.id[]'
+      name: entities.title.type[]
       schema:
         items:
-          format: int32
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_locations_country:
+      description: 'This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.locations.country[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_body_links_dbpedia:
+      description: 'This parameter is used to exclude stories based on the specified entities dbpedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.links.dbpedia[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    media_videos_count_min:
+      description: 'This parameter is used for finding stories whose number of videos is greater than or equal to the specified value.
+
+        '
+      in: query
+      name: media.videos.count.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    id:
+      description: 'This parameter is used for finding stories by story id.
+
+        '
+      explode: true
+      in: query
+      name: id[]
+      schema:
+        items:
+          format: int64
           type: integer
+        type:
+        - array
+        - 'null'
+      style: form
+    notsource_scopes_state:
+      description: 'This parameter is used for excluding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: '!source.scopes.state[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_body_links_wikipedia:
+      description: 'This parameter is used to exclude stories based on the specified entities Wikipedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.links.wikipedia[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    story_language:
+      description: 'This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.
+
+        '
+      in: query
+      name: story_language
+      schema:
+        default: auto
+        enum:
+        - auto
+        - en
+        - de
+        - fr
+        - it
+        - es
+        - pt
+        type:
+        - string
+        - 'null'
+    notsource_locations_country:
+      description: 'This parameter is used for excluding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: '!source.locations.country[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_name:
+      description: 'This parameter is used for finding stories whose source name contains the specified value.
+
+        '
+      explode: true
+      in: query
+      name: source.name[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    entities_body_stock_ticker:
+      description: 'This parameter is used to find stories based on the specified entities `stock_ticker` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.body.stock_ticker[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    entities_body_links_wikidata:
+      description: 'This parameter is used to find stories based on the specified entities wikidata URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.body.links.wikidata[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    entities_title_links_dbpedia:
+      description: 'This parameter is used to find stories based on the specified entities dbpedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.links.dbpedia[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    social_shares_count_reddit_min:
+      description: 'This parameter is used for finding stories whose Reddit social shares count is greater than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.reddit.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    language:
+      description: 'This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.
+
+        '
+      explode: true
+      in: query
+      name: language[]
+      schema:
+        items:
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          - pt
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    social_shares_count_google_plus_min:
+      description: 'This parameter is used for finding stories whose Google+ social shares count is greater than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.google_plus.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    story_title:
+      description: Title of the article
+      in: query
+      name: story_title
+      schema:
+        type:
+        - string
+        - 'null'
+    source_locations_city:
+      description: 'This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.locations.city[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_rankings_alexa_rank_max:
+      description: 'This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
+
+        '
+      in: query
+      name: source.rankings.alexa.rank.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notentities_title_type:
+      description: 'This parameter is used to exclude stories based on the specified entities `type` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.type[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    categories_id:
+      description: 'This parameter is used for finding stories by categories id. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      explode: true
+      in: query
+      name: categories.id[]
+      schema:
+        items:
+          type: string
         type:
         - array
         - 'null'
@@ -419,6 +667,54 @@ components:
         - integer
         - 'null'
         exclusiveMinimum: 0
+    notentities_body_text:
+      description: 'This parameter is used to exclude stories based on the specified entities `text` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.text[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    translations_en_title:
+      description: 'This parameter is used for finding stories whose translation title contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: translations.en.title
+      schema:
+        type:
+        - string
+        - 'null'
+    entities_title_surface_forms_text:
+      description: 'This parameter is used to find stories based on the specified entities `surface_form` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.surface_forms.text[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    title:
+      description: 'This parameter is used for finding stories whose title contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: title
+      schema:
+        type:
+        - string
+        - 'null'
     entities_title_links_wikidata:
       description: 'This parameter is used to find stories based on the specified entities Wikidata URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
@@ -433,13 +729,156 @@ components:
         - array
         - 'null'
       style: form
-    notsource_locations_city:
-      description: 'This parameter is used for excluding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+    categories_confident:
+      description: 'This parameter is used for finding stories whose categories are confident. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      in: query
+      name: categories.confident
+      schema:
+        default: true
+        type:
+        - boolean
+        - 'null'
+    story_url:
+      description: An article or webpage
+      in: query
+      name: story_url
+      schema:
+        type:
+        - string
+        - 'null'
+    notsource_name:
+      description: 'This parameter is used for excluding stories whose source name contains the specified value.
 
         '
       explode: true
       in: query
-      name: '!source.locations.city[]'
+      name: '!source.name[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_title_surface_forms_text:
+      description: 'This parameter is used to exclude stories based on the specified entities `surface_form` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.surface_forms.text[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notsource_scopes_level:
+      description: 'This parameter is used for excluding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: '!source.scopes.level[]'
+      schema:
+        items:
+          enum:
+          - international
+          - national
+          - local
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_scopes_country:
+      description: 'This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.scopes.country[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    sentiment_title_polarity:
+      description: 'This parameter is used for finding stories whose title sentiment is the specified value.
+
+        '
+      in: query
+      name: sentiment.title.polarity
+      schema:
+        enum:
+        - positive
+        - neutral
+        - negative
+        type:
+        - string
+        - 'null'
+    social_shares_count_google_plus_max:
+      description: 'This parameter is used for finding stories whose Google+ social shares count is less than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.google_plus.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    per_page:
+      description: 'This parameter is used for specifying number of items in each page.
+
+        '
+      in: query
+      name: per_page
+      schema:
+        default: 3
+        format: int32
+        maximum: 100
+        minimum: 1
+        type:
+        - integer
+        - 'null'
+    social_shares_count_reddit_max:
+      description: 'This parameter is used for finding stories whose Reddit social shares count is less than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.reddit.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    social_shares_count_facebook_max:
+      description: 'This parameter is used for finding stories whose Facebook social shares count is less than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.facebook.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    entities_title_id:
+      description: 'This parameter is used to find stories based on the specified entities `id` in the title of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.id[]
       schema:
         items:
           type: string
@@ -454,6 +893,650 @@ components:
       explode: true
       in: query
       name: '!source.scopes.country[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    categories_taxonomy:
+      description: 'This parameter is used for defining the type of the taxonomy for the rest of the categories queries. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      in: query
+      name: categories.taxonomy
+      schema:
+        enum:
+        - iab-qag
+        - iptc-subjectcode
+        type:
+        - string
+        - 'null'
+    published_at_end:
+      description: 'This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).
+
+        '
+      in: query
+      name: published_at.end
+      schema:
+        type:
+        - string
+        - 'null'
+    source_scopes_level:
+      description: 'This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.scopes.level[]
+      schema:
+        items:
+          enum:
+          - international
+          - national
+          - local
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_body_type:
+      description: 'This parameter is used to exclude stories based on the specified entities `type` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.type[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    story_id:
+      description: A story id
+      in: query
+      name: story_id
+      schema:
+        format: int64
+        type:
+        - integer
+        - 'null'
+    notauthor_id:
+      description: 'This parameter is used for excluding stories whose author id is the specified value.
+
+        '
+      explode: true
+      in: query
+      name: '!author.id[]'
+      schema:
+        items:
+          format: int32
+          type: integer
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_body_stock_ticker:
+      description: 'This parameter is used to exclude stories based on the specified entities `stock_ticker` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.stock_ticker[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_title_text:
+      description: 'This parameter is used to exclude stories based on the specified entities `text` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.text[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    media_images_count_max:
+      description: 'This parameter is used for finding stories whose number of images is less than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.count.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    links_permalink:
+      description: 'This parameter is used to find stories based on their url.
+
+        '
+      explode: true
+      in: query
+      name: links.permalink[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    story_body:
+      description: Body of the article
+      in: query
+      name: story_body
+      schema:
+        type:
+        - string
+        - 'null'
+    categories_label:
+      description: 'This parameter is used for finding stories by categories label. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      explode: true
+      in: query
+      name: categories.label[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    media_images_width_max:
+      description: 'This parameter is used for finding stories whose width of images are less than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.width.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notentities_body_surface_forms_text:
+      description: 'This parameter is used to exclude stories based on the specified entities `surface_form` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.surface_forms.text[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    social_shares_count_linkedin_max:
+      description: 'This parameter is used for finding stories whose LinkedIn social shares count is less than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.linkedin.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notentities_title_links_wikipedia:
+      description: 'This parameter is used to exclude stories based on the specified entities Wikipedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.links.wikipedia[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    sentiment_body_polarity:
+      description: 'This parameter is used for finding stories whose body sentiment is the specified value.
+
+        '
+      in: query
+      name: sentiment.body.polarity
+      schema:
+        enum:
+        - positive
+        - neutral
+        - negative
+        type:
+        - string
+        - 'null'
+    media_images_width_min:
+      description: 'This parameter is used for finding stories whose width of images are greater than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.width.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notsource_locations_state:
+      description: 'This parameter is used for excluding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: '!source.locations.state[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    text:
+      description: 'This parameter is used for finding stories whose title or body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: text
+      schema:
+        type:
+        - string
+        - 'null'
+    source_links_in_count_max:
+      description: 'This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count [here](https://newsapi.aylien.com/docs/working-with-links-in-count).
+
+        '
+      in: query
+      name: source.links_in_count.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notauthor_name:
+      description: 'This parameter is used for excluding stories whose author full name contains the specified value.
+
+        '
+      in: query
+      name: '!author.name'
+      schema:
+        type:
+        - string
+        - 'null'
+    entities_body_id:
+      description: 'This parameter is used to find stories based on the specified entities `id` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.body.id[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    social_shares_count_linkedin_min:
+      description: 'This parameter is used for finding stories whose LinkedIn social shares count is greater than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.linkedin.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    source_domain:
+      description: 'This parameter is used for finding stories whose source domain is the specified value.
+
+        '
+      explode: true
+      in: query
+      name: source.domain[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    media_images_content_length_min:
+      description: 'This parameter is used for finding stories whose images content length are greater than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.content_length.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    translations_en_body:
+      description: 'This parameter is used for finding stories whose translation body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: translations.en.body
+      schema:
+        type:
+        - string
+        - 'null'
+    translations_en_text:
+      description: 'This parameter is used for finding stories whose translation title or body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: translations.en.text
+      schema:
+        type:
+        - string
+        - 'null'
+    source_links_in_count_min:
+      description: 'This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count [here](https://newsapi.aylien.com/docs/working-with-links-in-count).
+
+        '
+      in: query
+      name: source.links_in_count.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    source_scopes_state:
+      description: 'This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.scopes.state[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    social_shares_count_facebook_min:
+      description: 'This parameter is used for finding stories whose Facebook social shares count is greater than or equal to the specified value.
+
+        '
+      in: query
+      name: social_shares_count.facebook.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    media_images_height_min:
+      description: 'This parameter is used for finding stories whose height of images are greater than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.height.min
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    notentities_title_id:
+      description: 'This parameter is used to exclude stories based on the specified entities `id` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.id[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notmedia_images_format:
+      description: 'This parameter is used for excluding stories whose images format are the specified value.
+
+        '
+      explode: true
+      in: query
+      name: '!media.images.format[]'
+      schema:
+        items:
+          enum:
+          - BMP
+          - GIF
+          - JPEG
+          - PNG
+          - TIFF
+          - PSD
+          - ICO
+          - CUR
+          - WEBP
+          - SVG
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_rankings_alexa_country:
+      description: 'This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
+
+        '
+      explode: true
+      in: query
+      name: source.rankings.alexa.country[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    entities_title_text:
+      description: 'This parameter is used to find stories based on the specified entities `text` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.text[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notcategories_level:
+      description: 'This parameter is used for excluding stories by categories level. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      explode: true
+      in: query
+      name: '!categories.level[]'
+      schema:
+        items:
+          type: integer
+        type:
+        - array
+        - 'null'
+      style: form
+    entities_title_stock_ticker:
+      description: 'This parameter is used to find stories based on the specified entities `stock_ticker` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.stock_ticker[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notsentiment_body_polarity:
+      description: 'This parameter is used for excluding stories whose body sentiment is the specified value.
+
+        '
+      in: query
+      name: '!sentiment.body.polarity'
+      schema:
+        enum:
+        - positive
+        - neutral
+        - negative
+        type:
+        - string
+        - 'null'
+    entities_title_links_wikipedia:
+      description: 'This parameter is used to find stories based on the specified entities Wikipedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.title.links.wikipedia[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    media_videos_count_max:
+      description: 'This parameter is used for finding stories whose number of videos is less than or equal to the specified value.
+
+        '
+      in: query
+      name: media.videos.count.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    media_images_content_length_max:
+      description: 'This parameter is used for finding stories whose images content length are less than or equal to the specified value.
+
+        '
+      in: query
+      name: media.images.content_length.max
+      schema:
+        format: int32
+        type:
+        - integer
+        - 'null'
+        exclusiveMinimum: 0
+    entities_body_links_wikipedia:
+      description: 'This parameter is used to find stories based on the specified entities wikipedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: entities.body.links.wikipedia[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    author_id:
+      description: 'This parameter is used for finding stories whose author id is the specified value.
+
+        '
+      explode: true
+      in: query
+      name: author.id[]
+      schema:
+        items:
+          format: int32
+          type: integer
+        type:
+        - array
+        - 'null'
+      style: form
+    notcategories_id:
+      description: 'This parameter is used for excluding stories by categories id. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
+
+        '
+      explode: true
+      in: query
+      name: '!categories.id[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    source_scopes_city:
+      description: 'This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.scopes.city[]
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    body:
+      description: 'This parameter is used for finding stories whose body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
+
+        '
+      in: query
+      name: body
+      schema:
+        type:
+        - string
+        - 'null'
+    source_id:
+      description: 'This parameter is used for finding stories whose source id is the specified value.
+
+        '
+      explode: true
+      in: query
+      name: source.id[]
+      schema:
+        items:
+          format: int32
+          type: integer
+        type:
+        - array
+        - 'null'
+      style: form
+    source_locations_state:
+      description: 'This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+
+        '
+      explode: true
+      in: query
+      name: source.locations.state[]
       schema:
         items:
           type: string
@@ -486,275 +1569,30 @@ components:
         - array
         - 'null'
       style: form
-    notentities_body_links_wikidata:
-      description: 'This parameter is used to exclude stories based on the specified entities Wikidata URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.links.wikidata[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    social_shares_count_google_plus_max:
-      description: 'This parameter is used for finding stories whose Google+ social shares count is less than or equal to the specified value.
+    source_rankings_alexa_rank_min:
+      description: 'This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
 
         '
       in: query
-      name: social_shares_count.google_plus.max
+      name: source.rankings.alexa.rank.min
       schema:
         format: int32
         type:
         - integer
         - 'null'
         exclusiveMinimum: 0
-    entities_body_surface_forms_text:
-      description: 'This parameter is used to find stories based on the specified entities `surface_form` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.body.surface_forms.text[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notlinks_permalink:
-      description: 'This parameter is used to exclude stories based on their url.
-
-        '
-      explode: true
-      in: query
-      name: '!links.permalink[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    social_shares_count_linkedin_max:
-      description: 'This parameter is used for finding stories whose LinkedIn social shares count is less than or equal to the specified value.
+    media_images_height_max:
+      description: 'This parameter is used for finding stories whose height of images are less than or equal to the specified value.
 
         '
       in: query
-      name: social_shares_count.linkedin.max
+      name: media.images.height.max
       schema:
         format: int32
         type:
         - integer
         - 'null'
         exclusiveMinimum: 0
-    social_shares_count_reddit_max:
-      description: 'This parameter is used for finding stories whose Reddit social shares count is less than or equal to the specified value.
-
-        '
-      in: query
-      name: social_shares_count.reddit.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notentities_title_links_wikidata:
-      description: 'This parameter is used to exclude stories based on the specified entities Wikidata URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.links.wikidata[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_title_stock_ticker:
-      description: 'This parameter is used to exclude stories based on the specified entities `stock_ticker` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.stock_ticker[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_title_links_wikipedia:
-      description: 'This parameter is used to exclude stories based on the specified entities Wikipedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.links.wikipedia[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    author_name:
-      description: 'This parameter is used for finding stories whose author full name contains the specified value.
-
-        '
-      in: query
-      name: author.name
-      schema:
-        type:
-        - string
-        - 'null'
-    translations_en_body:
-      description: 'This parameter is used for finding stories whose translation body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: translations.en.body
-      schema:
-        type:
-        - string
-        - 'null'
-    source_links_in_count_min:
-      description: 'This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count [here](https://newsapi.aylien.com/docs/working-with-links-in-count).
-
-        '
-      in: query
-      name: source.links_in_count.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    source_id:
-      description: 'This parameter is used for finding stories whose source id is the specified value.
-
-        '
-      explode: true
-      in: query
-      name: source.id[]
-      schema:
-        items:
-          format: int32
-          type: integer
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_title_type:
-      description: 'This parameter is used to exclude stories based on the specified entities `type` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.type[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_title_id:
-      description: 'This parameter is used to exclude stories based on the specified entities `id` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.id[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    social_shares_count_facebook_max:
-      description: 'This parameter is used for finding stories whose Facebook social shares count is less than or equal to the specified value.
-
-        '
-      in: query
-      name: social_shares_count.facebook.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    body:
-      description: 'This parameter is used for finding stories whose body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: body
-      schema:
-        type:
-        - string
-        - 'null'
-    sentiment_body_polarity:
-      description: 'This parameter is used for finding stories whose body sentiment is the specified value.
-
-        '
-      in: query
-      name: sentiment.body.polarity
-      schema:
-        enum:
-        - positive
-        - neutral
-        - negative
-        type:
-        - string
-        - 'null'
-    translations_en_title:
-      description: 'This parameter is used for finding stories whose translation title contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: translations.en.title
-      schema:
-        type:
-        - string
-        - 'null'
-    source_domain:
-      description: 'This parameter is used for finding stories whose source domain is the specified value.
-
-        '
-      explode: true
-      in: query
-      name: source.domain[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_title_id:
-      description: 'This parameter is used to find stories based on the specified entities `id` in the title of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.id[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
     notsource_scopes_city:
       description: 'This parameter is used for excluding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
 
@@ -762,20 +1600,6 @@ components:
       explode: true
       in: query
       name: '!source.scopes.city[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_body_id:
-      description: 'This parameter is used to find stories based on the specified entities `id` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.body.id[]
       schema:
         items:
           type: string
@@ -816,13 +1640,13 @@ components:
         - array
         - 'null'
       style: form
-    entities_title_type:
-      description: 'This parameter is used to find stories based on the specified entities `type` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    entities_body_text:
+      description: 'This parameter is used to find stories based on the specified entities `text` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: entities.title.type[]
+      name: entities.body.text[]
       schema:
         items:
           type: string
@@ -830,25 +1654,13 @@ components:
         - array
         - 'null'
       style: form
-    social_shares_count_facebook_min:
-      description: 'This parameter is used for finding stories whose Facebook social shares count is greater than or equal to the specified value.
-
-        '
-      in: query
-      name: social_shares_count.facebook.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    entities_body_type:
-      description: 'This parameter is used to find stories based on the specified entities `type` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    notentities_title_stock_ticker:
+      description: 'This parameter is used to exclude stories based on the specified entities `stock_ticker` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: entities.body.type[]
+      name: '!entities.title.stock_ticker[]'
       schema:
         items:
           type: string
@@ -856,290 +1668,13 @@ components:
         - array
         - 'null'
       style: form
-    notsource_locations_state:
-      description: 'This parameter is used for excluding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+    notsource_domain:
+      description: 'This parameter is used for excluding stories whose source domain is the specified value.
 
         '
       explode: true
       in: query
-      name: '!source.locations.state[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    published_at_end:
-      description: 'This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).
-
-        '
-      in: query
-      name: published_at.end
-      schema:
-        type:
-        - string
-        - 'null'
-    media_images_content_length_min:
-      description: 'This parameter is used for finding stories whose images content length are greater than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.content_length.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    story_id:
-      description: A story id
-      in: query
-      name: story_id
-      schema:
-        format: int64
-        type:
-        - integer
-        - 'null'
-    social_shares_count_google_plus_min:
-      description: 'This parameter is used for finding stories whose Google+ social shares count is greater than or equal to the specified value.
-
-        '
-      in: query
-      name: social_shares_count.google_plus.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    media_images_height_min:
-      description: 'This parameter is used for finding stories whose height of images are greater than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.height.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notsentiment_title_polarity:
-      description: 'This parameter is used for excluding stories whose title sentiment is the specified value.
-
-        '
-      in: query
-      name: '!sentiment.title.polarity'
-      schema:
-        enum:
-        - positive
-        - neutral
-        - negative
-        type:
-        - string
-        - 'null'
-    notentities_body_surface_forms_text:
-      description: 'This parameter is used to exclude stories based on the specified entities `surface_form` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.surface_forms.text[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_links_in_count_max:
-      description: 'This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count [here](https://newsapi.aylien.com/docs/working-with-links-in-count).
-
-        '
-      in: query
-      name: source.links_in_count.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    categories_taxonomy:
-      description: 'This parameter is used for defining the type of the taxonomy for the rest of the categories queries. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      in: query
-      name: categories.taxonomy
-      schema:
-        enum:
-        - iab-qag
-        - iptc-subjectcode
-        type:
-        - string
-        - 'null'
-    notentities_body_stock_ticker:
-      description: 'This parameter is used to exclude stories based on the specified entities `stock_ticker` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.stock_ticker[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_rankings_alexa_country:
-      description: 'This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
-
-        '
-      explode: true
-      in: query
-      name: source.rankings.alexa.country[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_locations_city:
-      description: 'This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.locations.city[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_body_type:
-      description: 'This parameter is used to exclude stories based on the specified entities `type` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.type[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_rankings_alexa_rank_min:
-      description: 'This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
-
-        '
-      in: query
-      name: source.rankings.alexa.rank.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notsource_scopes_state:
-      description: 'This parameter is used for excluding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: '!source.scopes.state[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    per_page:
-      description: 'This parameter is used for specifying number of items in each page.
-
-        '
-      in: query
-      name: per_page
-      schema:
-        default: 3
-        format: int32
-        maximum: 100
-        minimum: 1
-        type:
-        - integer
-        - 'null'
-    categories_confident:
-      description: 'This parameter is used for finding stories whose categories are confident. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      in: query
-      name: categories.confident
-      schema:
-        default: true
-        type:
-        - boolean
-        - 'null'
-    story_body:
-      description: Body of the article
-      in: query
-      name: story_body
-      schema:
-        type:
-        - string
-        - 'null'
-    source_scopes_state:
-      description: 'This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.scopes.state[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notcategories_id:
-      description: 'This parameter is used for excluding stories by categories id. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      explode: true
-      in: query
-      name: '!categories.id[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    media_images_count_max:
-      description: 'This parameter is used for finding stories whose number of images is less than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.count.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    source_locations_state:
-      description: 'This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.locations.state[]
+      name: '!source.domain[]'
       schema:
         items:
           type: string
@@ -1161,23 +1696,13 @@ components:
         - array
         - 'null'
       style: form
-    title:
-      description: 'This parameter is used for finding stories whose title contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: title
-      schema:
-        type:
-        - string
-        - 'null'
-    entities_body_links_dbpedia:
-      description: 'This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    notsource_locations_city:
+      description: 'This parameter is used for excluding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
 
         '
       explode: true
       in: query
-      name: entities.body.links.dbpedia[]
+      name: '!source.locations.city[]'
       schema:
         items:
           type: string
@@ -1185,253 +1710,15 @@ components:
         - array
         - 'null'
       style: form
-    entities_body_links_wikidata:
-      description: 'This parameter is used to find stories based on the specified entities wikidata URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    entities_body_type:
+      description: 'This parameter is used to find stories based on the specified entities `type` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: entities.body.links.wikidata[]
+      name: entities.body.type[]
       schema:
         items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notsource_name:
-      description: 'This parameter is used for excluding stories whose source name contains the specified value.
-
-        '
-      explode: true
-      in: query
-      name: '!source.name[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    categories_id:
-      description: 'This parameter is used for finding stories by categories id. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      explode: true
-      in: query
-      name: categories.id[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    id:
-      description: 'This parameter is used for finding stories by story id.
-
-        '
-      explode: true
-      in: query
-      name: id[]
-      schema:
-        items:
-          format: int64
-          type: integer
-        type:
-        - array
-        - 'null'
-      style: form
-    social_shares_count_linkedin_min:
-      description: 'This parameter is used for finding stories whose LinkedIn social shares count is greater than or equal to the specified value.
-
-        '
-      in: query
-      name: social_shares_count.linkedin.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notsource_locations_country:
-      description: 'This parameter is used for excluding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: '!source.locations.country[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    published_at_start:
-      description: 'This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).
-
-        '
-      in: query
-      name: published_at.start
-      schema:
-        type:
-        - string
-        - 'null'
-    language:
-      description: 'This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.
-
-        '
-      explode: true
-      in: query
-      name: language[]
-      schema:
-        items:
-          enum:
-          - en
-          - de
-          - fr
-          - it
-          - es
-          - pt
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    translations_en_text:
-      description: 'This parameter is used for finding stories whose translation title or body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: translations.en.text
-      schema:
-        type:
-        - string
-        - 'null'
-    notentities_title_surface_forms_text:
-      description: 'This parameter is used to exclude stories based on the specified entities `surface_form` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.surface_forms.text[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    media_images_content_length_max:
-      description: 'This parameter is used for finding stories whose images content length are less than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.content_length.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    entities_title_text:
-      description: 'This parameter is used to find stories based on the specified entities `text` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.text[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_name:
-      description: 'This parameter is used for finding stories whose source name contains the specified value.
-
-        '
-      explode: true
-      in: query
-      name: source.name[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_body_stock_ticker:
-      description: 'This parameter is used to find stories based on the specified entities `stock_ticker` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.body.stock_ticker[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_title_links_wikipedia:
-      description: 'This parameter is used to find stories based on the specified entities Wikipedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.links.wikipedia[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_body_id:
-      description: 'This parameter is used to exclude stories based on the specified entities `id` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.id[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_body_links_dbpedia:
-      description: 'This parameter is used to exclude stories based on the specified entities dbpedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.links.dbpedia[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notsource_scopes_level:
-      description: 'This parameter is used for excluding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: '!source.scopes.level[]'
-      schema:
-        items:
-          enum:
-          - international
-          - national
-          - local
           type: string
         type:
         - array
@@ -1452,167 +1739,27 @@ components:
         - array
         - 'null'
       style: form
-    notentities_title_text:
-      description: 'This parameter is used to exclude stories based on the specified entities `text` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.title.text[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    social_shares_count_reddit_min:
-      description: 'This parameter is used for finding stories whose Reddit social shares count is greater than or equal to the specified value.
+    notsentiment_title_polarity:
+      description: 'This parameter is used for excluding stories whose title sentiment is the specified value.
 
         '
       in: query
-      name: social_shares_count.reddit.min
+      name: '!sentiment.title.polarity'
       schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    story_language:
-      description: 'This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes.
-
-        '
-      in: query
-      name: story_language
-      schema:
-        default: auto
         enum:
-        - auto
-        - en
-        - de
-        - fr
-        - it
-        - es
-        - pt
+        - positive
+        - neutral
+        - negative
         type:
         - string
         - 'null'
-    media_videos_count_max:
-      description: 'This parameter is used for finding stories whose number of videos is less than or equal to the specified value.
-
-        '
-      in: query
-      name: media.videos.count.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    entities_body_text:
-      description: 'This parameter is used to find stories based on the specified entities `text` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    entities_body_links_dbpedia:
+      description: 'This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: entities.body.text[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_title_stock_ticker:
-      description: 'This parameter is used to find stories based on the specified entities `stock_ticker` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.stock_ticker[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    media_images_height_max:
-      description: 'This parameter is used for finding stories whose height of images are less than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.height.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    source_scopes_country:
-      description: 'This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.scopes.country[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    clusters:
-      description: 'This parameter is used for finding stories with belonging to one of clusters in a specific set of clusters You can read more about working with clustering [here](https://newsapi.aylien.com/docs/working-with-clustering).
-
-        '
-      explode: true
-      in: query
-      name: clusters[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notsource_id:
-      description: 'This parameter is used for excluding stories whose source id is the specified value.
-
-        '
-      explode: true
-      in: query
-      name: '!source.id[]'
-      schema:
-        items:
-          format: int32
-          type: integer
-        type:
-        - array
-        - 'null'
-      style: form
-    notcategories_level:
-      description: 'This parameter is used for excluding stories by categories level. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      explode: true
-      in: query
-      name: '!categories.level[]'
-      schema:
-        items:
-          type: integer
-        type:
-        - array
-        - 'null'
-      style: form
-    source_scopes_city:
-      description: 'This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.scopes.city[]
+      name: entities.body.links.dbpedia[]
       schema:
         items:
           type: string
@@ -1641,135 +1788,13 @@ components:
         - array
         - 'null'
       style: form
-    text:
-      description: 'This parameter is used for finding stories whose title or body contains a specific keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators).
-
-        '
-      in: query
-      name: text
-      schema:
-        type:
-        - string
-        - 'null'
-    source_locations_country:
-      description: 'This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
+    notsource_id:
+      description: 'This parameter is used for excluding stories whose source id is the specified value.
 
         '
       explode: true
       in: query
-      name: source.locations.country[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_scopes_level:
-      description: 'This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations).
-
-        '
-      explode: true
-      in: query
-      name: source.scopes.level[]
-      schema:
-        items:
-          enum:
-          - international
-          - national
-          - local
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    source_rankings_alexa_rank_max:
-      description: 'This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks [here](https://newsapi.aylien.com/docs/working-with-alexa-ranks).
-
-        '
-      in: query
-      name: source.rankings.alexa.rank.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notsource_domain:
-      description: 'This parameter is used for excluding stories whose source domain is the specified value.
-
-        '
-      explode: true
-      in: query
-      name: '!source.domain[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    notentities_body_links_wikipedia:
-      description: 'This parameter is used to exclude stories based on the specified entities Wikipedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.links.wikipedia[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_title_surface_forms_text:
-      description: 'This parameter is used to find stories based on the specified entities `surface_form` in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.surface_forms.text[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    media_images_width_max:
-      description: 'This parameter is used for finding stories whose width of images are less than or equal to the specified value.
-
-        '
-      in: query
-      name: media.images.width.max
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    notsentiment_body_polarity:
-      description: 'This parameter is used for excluding stories whose body sentiment is the specified value.
-
-        '
-      in: query
-      name: '!sentiment.body.polarity'
-      schema:
-        enum:
-        - positive
-        - neutral
-        - negative
-        type:
-        - string
-        - 'null'
-    author_id:
-      description: 'This parameter is used for finding stories whose author id is the specified value.
-
-        '
-      explode: true
-      in: query
-      name: author.id[]
+      name: '!source.id[]'
       schema:
         items:
           format: int32
@@ -1778,6 +1803,82 @@ components:
         - array
         - 'null'
       style: form
+    notentities_title_links_dbpedia:
+      description: 'This parameter is used to exclude stories based on the specified entities dbpedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.title.links.dbpedia[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notentities_body_links_wikidata:
+      description: 'This parameter is used to exclude stories based on the specified entities Wikidata URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.links.wikidata[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    notlinks_permalink:
+      description: 'This parameter is used to exclude stories based on their url.
+
+        '
+      explode: true
+      in: query
+      name: '!links.permalink[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    author_name:
+      description: 'This parameter is used for finding stories whose author full name contains the specified value.
+
+        '
+      in: query
+      name: author.name
+      schema:
+        type:
+        - string
+        - 'null'
+    notentities_body_id:
+      description: 'This parameter is used to exclude stories based on the specified entities `id` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+
+        '
+      explode: true
+      in: query
+      name: '!entities.body.id[]'
+      schema:
+        items:
+          type: string
+        type:
+        - array
+        - 'null'
+      style: form
+    published_at_start:
+      description: 'This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates).
+
+        '
+      in: query
+      name: published_at.start
+      schema:
+        type:
+        - string
+        - 'null'
     notcategories_label:
       description: 'This parameter is used for excluding stories by categories label. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
 
@@ -1792,38 +1893,13 @@ components:
         - array
         - 'null'
       style: form
-    notmedia_images_format:
-      description: 'This parameter is used for excluding stories whose images format are the specified value.
+    entities_body_surface_forms_text:
+      description: 'This parameter is used to find stories based on the specified entities `surface_form` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: '!media.images.format[]'
-      schema:
-        items:
-          enum:
-          - BMP
-          - GIF
-          - JPEG
-          - PNG
-          - TIFF
-          - PSD
-          - ICO
-          - CUR
-          - WEBP
-          - SVG
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    links_permalink:
-      description: 'This parameter is used to find stories based on their url.
-
-        '
-      explode: true
-      in: query
-      name: links.permalink[]
+      name: entities.body.surface_forms.text[]
       schema:
         items:
           type: string
@@ -1831,21 +1907,13 @@ components:
         - array
         - 'null'
       style: form
-    story_title:
-      description: Title of the article
-      in: query
-      name: story_title
-      schema:
-        type:
-        - string
-        - 'null'
-    entities_body_links_wikipedia:
-      description: 'This parameter is used to find stories based on the specified entities wikipedia URL in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
+    notentities_title_links_wikidata:
+      description: 'This parameter is used to exclude stories based on the specified entities Wikidata URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
 
         '
       explode: true
       in: query
-      name: entities.body.links.wikipedia[]
+      name: '!entities.title.links.wikidata[]'
       schema:
         items:
           type: string
@@ -1853,171 +1921,30 @@ components:
         - array
         - 'null'
       style: form
-    notentities_body_text:
-      description: 'This parameter is used to exclude stories based on the specified entities `text` in the body of stories. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: '!entities.body.text[]'
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    categories_label:
-      description: 'This parameter is used for finding stories by categories label. You can read more about working with categories [here](https://newsapi.aylien.com/docs/working-with-categories).
-
-        '
-      explode: true
-      in: query
-      name: categories.label[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    entities_title_links_dbpedia:
-      description: 'This parameter is used to find stories based on the specified entities dbpedia URL in story titles. You can read more about working with entities [here](https://newsapi.aylien.com/docs/working-with-entities).
-
-        '
-      explode: true
-      in: query
-      name: entities.title.links.dbpedia[]
-      schema:
-        items:
-          type: string
-        type:
-        - array
-        - 'null'
-      style: form
-    media_videos_count_min:
-      description: 'This parameter is used for finding stories whose number of videos is greater than or equal to the specified value.
-
-        '
-      in: query
-      name: media.videos.count.min
-      schema:
-        format: int32
-        type:
-        - integer
-        - 'null'
-        exclusiveMinimum: 0
-    sentiment_title_polarity:
-      description: 'This parameter is used for finding stories whose title sentiment is the specified value.
-
-        '
-      in: query
-      name: sentiment.title.polarity
-      schema:
-        enum:
-        - positive
-        - neutral
-        - negative
-        type:
-        - string
-        - 'null'
   schemas:
-    Error:
+    Category:
       properties:
-        code:
-          type: string
-        detail:
-          type: string
+        confident:
+          description: It defines whether the extracted category is confident or not
+          type: boolean
         id:
+          description: The ID of the category
           type: string
+        label:
+          description: The label of the category
+          type: string
+        level:
+          description: The level of the category
+          format: int32
+          type: integer
         links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        title:
-          type: string
-      type: object
-    Media:
-      properties:
-        content_length:
-          description: The content length of media
-          format: int32
-          type: integer
-        format:
-          $ref: '#/components/schemas/MediaFormat'
-        height:
-          description: The height of media
-          format: int32
-          type: integer
-        type:
-          $ref: '#/components/schemas/MediaType'
-        url:
-          description: A URL which points to the media file
-          type: string
-        width:
-          description: The width of media
-          format: int32
-          type: integer
-      type: object
-    Location:
-      properties:
-        city:
-          description: The city of the location
-          type: string
-        country:
-          description: 'The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
-
-            '
-          type: string
-        state:
-          description: The state of the location
-          type: string
-      type: object
-    Summary:
-      properties:
-        sentences:
-          description: An array of the suggested summary sentences
-          items:
-            description: A summary sentence
-            type: string
-          type: array
-      type: object
-    EntityLinks:
-      properties:
-        dbpedia:
-          description: A dbpedia resource URL (deprecated)
-          type: string
-        wikipedia:
-          description: A wikipedia resource URL
-          type: string
-        wikidata:
-          description: A wikidata resource URL
-          type: string
-      type: object
-    ScopeLevel:
-      description: The scope by level
-      enum:
-      - international
-      - national
-      - local
-      type: string
-    ShareCount:
-      properties:
-        count:
-          description: The number of shares
-          format: int32
-          type: integer
-        fetched_at:
-          description: The fetched date of the shares
-          format: date-time
-          type: string
-      type: object
-    Errors:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
+          $ref: '#/components/schemas/CategoryLinks'
+        score:
+          description: The score of the category
+          format: double
+          type: number
+        taxonomy:
+          $ref: '#/components/schemas/CategoryTaxonomy'
       type: object
     ShareCounts:
       properties:
@@ -2042,51 +1969,6 @@ components:
             $ref: '#/components/schemas/ShareCount'
           type: array
       type: object
-    Sentiment:
-      properties:
-        polarity:
-          $ref: '#/components/schemas/SentimentPolarity'
-        score:
-          description: Polarity score of the sentiment
-          format: double
-          maximum: 1
-          minimum: 0
-          type: number
-      type: object
-    MediaType:
-      description: The type of media
-      enum:
-      - image
-      - video
-      type: string
-    CategoryTaxonomy:
-      type: string
-      description: The taxonomy of the category
-      enum:
-      - iab-qag
-      - iptc-subjectcode
-    Entities:
-      properties:
-        body:
-          description: An array of extracted entities from the story body
-          items:
-            $ref: '#/components/schemas/Entity'
-          type: array
-        title:
-          description: An array of extracted entities from the story title
-          items:
-            $ref: '#/components/schemas/Entity'
-          type: array
-      type: object
-    CategoryLinks:
-      properties:
-        parent:
-          description: A URL pointing to the parent category
-          type: string
-        self:
-          description: A URL pointing to the category
-          type: string
-      type: object
     EntitySurfaceForm:
       properties:
         text:
@@ -2101,20 +1983,70 @@ components:
             type: array
           type: array
       type: object
-    StoryLinks:
+    Sentiment:
       properties:
-        canonical:
-          description: The story canonical URL
+        polarity:
+          $ref: '#/components/schemas/SentimentPolarity'
+        score:
+          description: Polarity score of the sentiment
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
+      type: object
+    ShareCount:
+      properties:
+        count:
+          description: The number of shares
+          format: int32
+          type: integer
+        fetched_at:
+          description: The fetched date of the shares
+          format: date-time
           type: string
-        permalink:
-          description: The story permalink URL
+      type: object
+    Entity:
+      properties:
+        id:
+          description: The unique ID of the entity
           type: string
-        related_stories:
-          description: The related stories URL
+        indices:
+          description: The indices of the entity text
+          items:
+            items:
+              format: int32
+              type: integer
+            type: array
+          type: array
+        links:
+          $ref: '#/components/schemas/EntityLinks'
+        text:
+          description: The entity text
           type: string
-        clusters:
-          description: The clusters endpoint URL for this story
+        stock_ticker:
+          description: The stock_ticker of the entity (might be null)
           type: string
+        types:
+          description: An array of the entity types
+          items:
+            description: An entity type
+            type: string
+          type: array
+        sentiment:
+          $ref: '#/components/schemas/EntitySentiment'
+        surface_forms:
+          items:
+            $ref: '#/components/schemas/EntitySurfaceForm'
+          type: array
+      type: object
+    Summary:
+      properties:
+        sentences:
+          description: An array of the suggested summary sentences
+          items:
+            description: A summary sentence
+            type: string
+          type: array
       type: object
     Story:
       properties:
@@ -2198,57 +2130,19 @@ components:
           format: int32
           type: integer
       type: object
-    Rankings:
+    Error:
       properties:
-        alexa:
-          items:
-            $ref: '#/components/schemas/Rank'
-          type: array
-      type: object
-    Scope:
-      properties:
-        city:
-          description: The scope by city
+        code:
           type: string
-        country:
-          description: 'The source scope by country code. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
-
-            '
+        detail:
           type: string
-        level:
-          $ref: '#/components/schemas/ScopeLevel'
-        state:
-          description: The scope by state
+        id:
           type: string
-      type: object
-    Rank:
-      properties:
-        country:
-          description: The country code which the rank is in it
-          type: string
-        fetched_at:
-          description: The fetched date of the rank
-          format: date-time
-          type: string
-        rank:
-          description: The rank
-          format: int32
-          type: integer
-      type: object
-    Sentiments:
-      properties:
-        body:
-          $ref: '#/components/schemas/Sentiment'
-        title:
-          $ref: '#/components/schemas/Sentiment'
-      type: object
-    StoryTranslation:
-      properties:
-        body:
-          description: Translation of body
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
           type: string
         title:
-          description: Translation of title
           type: string
       type: object
     MediaFormat:
@@ -2277,6 +2171,188 @@ components:
         name:
           description: The extracted author full name
           type: string
+      type: object
+    MediaType:
+      description: The type of media
+      enum:
+      - image
+      - video
+      type: string
+    ScopeLevel:
+      description: The scope by level
+      enum:
+      - international
+      - national
+      - local
+      type: string
+    StoryTranslations:
+      description: Translations of the story. Each language has it's own key and object
+      properties:
+        en:
+          $ref: '#/components/schemas/StoryTranslation'
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
+    Sentiments:
+      properties:
+        body:
+          $ref: '#/components/schemas/Sentiment'
+        title:
+          $ref: '#/components/schemas/Sentiment'
+      type: object
+    Scope:
+      properties:
+        city:
+          description: The scope by city
+          type: string
+        country:
+          description: 'The source scope by country code. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
+
+            '
+          type: string
+        level:
+          $ref: '#/components/schemas/ScopeLevel'
+        state:
+          description: The scope by state
+          type: string
+      type: object
+    StoryTranslation:
+      properties:
+        body:
+          description: Translation of body
+          type: string
+        title:
+          description: Translation of title
+          type: string
+      type: object
+    Entities:
+      properties:
+        body:
+          description: An array of extracted entities from the story body
+          items:
+            $ref: '#/components/schemas/Entity'
+          type: array
+        title:
+          description: An array of extracted entities from the story title
+          items:
+            $ref: '#/components/schemas/Entity'
+          type: array
+      type: object
+    Location:
+      properties:
+        city:
+          description: The city of the location
+          type: string
+        country:
+          description: 'The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
+
+            '
+          type: string
+        state:
+          description: The state of the location
+          type: string
+      type: object
+    EntityLinks:
+      properties:
+        dbpedia:
+          description: A dbpedia resource URL (deprecated)
+          type: string
+        wikipedia:
+          description: A wikipedia resource URL
+          type: string
+        wikidata:
+          description: A wikidata resource URL
+          type: string
+      type: object
+    Rank:
+      properties:
+        country:
+          description: The country code which the rank is in it
+          type: string
+        fetched_at:
+          description: The fetched date of the rank
+          format: date-time
+          type: string
+        rank:
+          description: The rank
+          format: int32
+          type: integer
+      type: object
+    RelatedStories:
+      properties:
+        related_stories:
+          description: An array of related stories for the input story
+          items:
+            $ref: '#/components/schemas/Story'
+          type: array
+        story_body:
+          description: The input story body
+          type: string
+        story_language:
+          description: The input story language
+          type: string
+        story_title:
+          description: The input story title
+          type: string
+        published_at.end:
+          description: The end of a period in which searched stories were published
+          format: date-time
+          type: string
+        published_at.start:
+          description: The start of a period in which searched stories were published
+          format: date-time
+          type: string
+      type: object
+    CategoryTaxonomy:
+      type: string
+      description: The taxonomy of the category
+      enum:
+      - iab-qag
+      - iptc-subjectcode
+    StoryLinks:
+      properties:
+        canonical:
+          description: The story canonical URL
+          type: string
+        permalink:
+          description: The story permalink URL
+          type: string
+        related_stories:
+          description: The related stories URL
+          type: string
+        clusters:
+          description: The clusters endpoint URL for this story
+          type: string
+      type: object
+    SentimentPolarity:
+      description: Polarity of the sentiment
+      enum:
+      - positive
+      - neutral
+      - negative
+      type: string
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
+          type: string
+      type: object
+    EntitySentiment:
+      properties:
+        polarity:
+          $ref: '#/components/schemas/SentimentPolarity'
+        confidence:
+          description: Polarity confidence of the sentiment
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
       type: object
     Source:
       properties:
@@ -2323,119 +2399,43 @@ components:
           description: The title of the home page URL
           type: string
       type: object
-    SentimentPolarity:
-      description: Polarity of the sentiment
-      enum:
-      - positive
-      - neutral
-      - negative
-      type: string
-    Entity:
+    CategoryLinks:
       properties:
-        id:
-          description: The unique ID of the entity
+        parent:
+          description: A URL pointing to the parent category
           type: string
-        indices:
-          description: The indices of the entity text
-          items:
-            items:
-              format: int32
-              type: integer
-            type: array
-          type: array
-        links:
-          $ref: '#/components/schemas/EntityLinks'
-        text:
-          description: The entity text
-          type: string
-        stock_ticker:
-          description: The stock_ticker of the entity (might be null)
-          type: string
-        types:
-          description: An array of the entity types
-          items:
-            description: An entity type
-            type: string
-          type: array
-        sentiment:
-          $ref: '#/components/schemas/EntitySentiment'
-        surface_forms:
-          items:
-            $ref: '#/components/schemas/EntitySurfaceForm'
-          type: array
-      type: object
-    EntitySentiment:
-      properties:
-        polarity:
-          $ref: '#/components/schemas/SentimentPolarity'
-        confidence:
-          description: Polarity confidence of the sentiment
-          format: double
-          maximum: 1
-          minimum: 0
-          type: number
-      type: object
-    ErrorLinks:
-      properties:
-        about:
-          type: string
-        docs:
+        self:
+          description: A URL pointing to the category
           type: string
       type: object
-    Category:
+    Rankings:
       properties:
-        confident:
-          description: It defines whether the extracted category is confident or not
-          type: boolean
-        id:
-          description: The ID of the category
-          type: string
-        label:
-          description: The label of the category
-          type: string
-        level:
-          description: The level of the category
+        alexa:
+          items:
+            $ref: '#/components/schemas/Rank'
+          type: array
+      type: object
+    Media:
+      properties:
+        content_length:
+          description: The content length of media
           format: int32
           type: integer
-        links:
-          $ref: '#/components/schemas/CategoryLinks'
-        score:
-          description: The score of the category
-          format: double
-          type: number
-        taxonomy:
-          $ref: '#/components/schemas/CategoryTaxonomy'
-      type: object
-    StoryTranslations:
-      description: Translations of the story. Each language has it's own key and object
-      properties:
-        en:
-          $ref: '#/components/schemas/StoryTranslation'
-      type: object
-    RelatedStories:
-      properties:
-        related_stories:
-          description: An array of related stories for the input story
-          items:
-            $ref: '#/components/schemas/Story'
-          type: array
-        story_body:
-          description: The input story body
+        format:
+          $ref: '#/components/schemas/MediaFormat'
+        height:
+          description: The height of media
+          format: int32
+          type: integer
+        type:
+          $ref: '#/components/schemas/MediaType'
+        url:
+          description: A URL which points to the media file
           type: string
-        story_language:
-          description: The input story language
-          type: string
-        story_title:
-          description: The input story title
-          type: string
-        published_at.end:
-          description: The end of a period in which searched stories were published
-          format: date-time
-          type: string
-        published_at.start:
-          description: The start of a period in which searched stories were published
-          format: date-time
-          type: string
+        width:
+          description: The width of media
+          format: int32
+          type: integer
       type: object
   securitySchemes:
     app_id:

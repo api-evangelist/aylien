@@ -66,7 +66,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-autocomplete-api
-  name: AYLIEN autocomplete API
+  name: AYLIEN Autocomplete API
   description: The autocomplete API from AYLIEN — 1 operation(s) for autocomplete.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -108,7 +108,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-cluster-api
-  name: AYLIEN cluster API
+  name: AYLIEN Cluster API
   description: The cluster API from AYLIEN — 1 operation(s) for cluster.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -230,7 +230,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-histogram-api
-  name: AYLIEN histogram API
+  name: AYLIEN Histogram API
   description: The histogram API from AYLIEN — 1 operation(s) for histogram.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -272,7 +272,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-related-story-api
-  name: AYLIEN related_story API
+  name: AYLIEN Related Story API
   description: The related_story API from AYLIEN — 1 operation(s) for related_story.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -313,7 +313,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-story-api
-  name: AYLIEN story API
+  name: AYLIEN Story API
   description: The story API from AYLIEN — 1 operation(s) for story.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -355,7 +355,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-time-series-api
-  name: AYLIEN time_series API
+  name: AYLIEN Time Series API
   description: The time_series API from AYLIEN — 1 operation(s) for time_series.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com
@@ -377,7 +377,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/aylien/refs/heads/main/finops/finops.yml
 - aid: aylien:aylien-trends-api
-  name: AYLIEN trends API
+  name: AYLIEN Trends API
   description: The trends API from AYLIEN — 1 operation(s) for trends.
   humanURL: https://aylien.com/news-api-for-credit-risk-and-customer-intelligence
   baseURL: https://api.aylien.com

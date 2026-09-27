@@ -69,6 +69,15 @@ paths:
       - Classify
 components:
   schemas:
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
     GenericConfidence:
       type: number
       format: float
@@ -90,18 +99,6 @@ components:
           type: string
         detail:
           type: string
-    GenericInputText:
-      type: string
-      description: Input text
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
     Errors:
       type: object
       properties:
@@ -114,6 +111,23 @@ components:
       properties:
         about:
           type: string
+    Classification:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        language:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        taxonomy:
+          type: string
+          description: Input taxonomy
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationCategory'
+    GenericInputText:
+      type: string
+      description: Input text
     ClassificationCategory:
       type: object
       properties:
@@ -140,20 +154,6 @@ components:
               link:
                 type: string
                 description: Link URL
-    Classification:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        language:
-          $ref: '#/components/schemas/GenericInputLanguage'
-        taxonomy:
-          type: string
-          description: Input taxonomy
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationCategory'
   responses:
     classify-iab-qag:
       description: An object describing document classification
@@ -197,6 +197,42 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+            '
+          schema:
+            type: integer
+            format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
     classify-iptc:
       description: An object describing document classification
       headers:
@@ -230,35 +266,8 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Classification'
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error429_TooManyRequests:
-      description: Too Many Requests
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
-
-            '
-          schema:
-            type: integer
-            format: int64
+    error500_InternalServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -275,28 +284,11 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
   parameters:
     text:
       name: text
       in: query
       description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
 
         '
       schema:
@@ -315,6 +307,14 @@ components:
         - es
         - fr
         - it
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
   securitySchemes:
     app_id:
       type: apiKey

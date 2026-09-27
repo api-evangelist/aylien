@@ -49,12 +49,6 @@ paths:
       - Sentiment
 components:
   schemas:
-    GenericConfidence:
-      type: number
-      format: float
-      description: Model confidence (0..1)
-      minimum: 0
-      maximum: 1
     Sentiment:
       type: object
       properties:
@@ -72,6 +66,25 @@ components:
           - unknown
         subjectivity_confidence:
           $ref: '#/components/schemas/GenericConfidence'
+    GenericPolarityConfidence:
+      type: number
+      format: float
+      description: Polarity confidence (0..1)
+      minimum: 0
+      maximum: 1
+    GenericConfidence:
+      type: number
+      format: float
+      description: Model confidence (0..1)
+      minimum: 0
+      maximum: 1
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     Error:
       type: object
       properties:
@@ -87,22 +100,6 @@ components:
           type: string
         detail:
           type: string
-    GenericPolarityConfidence:
-      type: number
-      format: float
-      description: Polarity confidence (0..1)
-      minimum: 0
-      maximum: 1
-    GenericInputText:
-      type: string
-      description: Input text
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     ErrorLinks:
       type: object
       properties:
@@ -115,6 +112,40 @@ components:
       - positive
       - negative
       - neutral
+    GenericInputText:
+      type: string
+      description: Input text
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
   responses:
     error422_UnprocessableEntity:
       description: Unprocessable Entity
@@ -158,15 +189,6 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Sentiment'
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -194,8 +216,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
+    error404_NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -212,37 +234,15 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
   securitySchemes:
     app_id:
       type: apiKey

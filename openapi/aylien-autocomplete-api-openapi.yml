@@ -159,6 +159,15 @@ paths:
       summary: List autocompletes
 components:
   schemas:
+    Autocomplete:
+      properties:
+        id:
+          description: ID of the autocomplete
+          type: string
+        text:
+          description: Text of the autocomplete
+          type: string
+      type: object
     Error:
       properties:
         code:
@@ -172,15 +181,6 @@ components:
         status:
           type: string
         title:
-          type: string
-      type: object
-    Autocomplete:
-      properties:
-        id:
-          description: ID of the autocomplete
-          type: string
-        text:
-          description: Text of the autocomplete
           type: string
       type: object
     Errors:
