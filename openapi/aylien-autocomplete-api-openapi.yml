@@ -158,7 +158,44 @@ paths:
       - app_key: []
       summary: List autocompletes
 components:
+  parameters:
+    per_page:
+      description: 'This parameter is used for specifying number of items in each page.
+
+        '
+      in: query
+      name: per_page
+      schema:
+        default: 3
+        format: int32
+        maximum: 100
+        minimum: 1
+        type:
+        - integer
+        - 'null'
   schemas:
+    Autocompletes:
+      properties:
+        autocompletes:
+          description: An array of autocompletes
+          items:
+            $ref: '#/components/schemas/Autocomplete'
+          type: array
+      type: object
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
+          type: string
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
     Autocomplete:
       properties:
         id:
@@ -183,43 +220,6 @@ components:
         title:
           type: string
       type: object
-    Errors:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-      type: object
-    ErrorLinks:
-      properties:
-        about:
-          type: string
-        docs:
-          type: string
-      type: object
-    Autocompletes:
-      properties:
-        autocompletes:
-          description: An array of autocompletes
-          items:
-            $ref: '#/components/schemas/Autocomplete'
-          type: array
-      type: object
-  parameters:
-    per_page:
-      description: 'This parameter is used for specifying number of items in each page.
-
-        '
-      in: query
-      name: per_page
-      schema:
-        default: 3
-        format: int32
-        maximum: 100
-        minimum: 1
-        type:
-        - integer
-        - 'null'
   securitySchemes:
     app_id:
       x-auth-id-alias: true

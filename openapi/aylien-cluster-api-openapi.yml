@@ -293,48 +293,22 @@ paths:
       - app_key: []
       summary: List Clusters
 components:
-  responses:
-    clusters:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Clusters'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Clusters'
-      description: An object including an array of clusters
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
-          schema:
-            format: int32
-            type: integer
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
-          schema:
-            format: int32
-            type: integer
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
-
-            '
-          schema:
-            format: int64
-            type: integer
   schemas:
-    Clusters:
+    RepresentativeStory:
       properties:
-        cluster_count:
-          description: The total number of clusters
+        id:
+          description: ID of the story which is a unique identification
           format: int64
           type: integer
-        clusters:
-          description: An array of clusters
-          items:
-            $ref: '#/components/schemas/Cluster'
-          type: array
-        next_page_cursor:
-          description: The next page cursor
+        permalink:
+          description: The story permalink URL
+          type: string
+        published_at:
+          description: Published date of the story
+          format: date-time
+          type: string
+        title:
+          description: Title of the story
           type: string
       type: object
     Location:
@@ -349,6 +323,13 @@ components:
           type: string
         state:
           description: The state of the location
+          type: string
+      type: object
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
           type: string
       type: object
     Cluster:
@@ -378,6 +359,13 @@ components:
           format: date-time
           type: string
       type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
     Error:
       properties:
         code:
@@ -393,37 +381,49 @@ components:
         title:
           type: string
       type: object
-    Errors:
+    Clusters:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-      type: object
-    ErrorLinks:
-      properties:
-        about:
-          type: string
-        docs:
-          type: string
-      type: object
-    RepresentativeStory:
-      properties:
-        id:
-          description: ID of the story which is a unique identification
+        cluster_count:
+          description: The total number of clusters
           format: int64
           type: integer
-        permalink:
-          description: The story permalink URL
-          type: string
-        published_at:
-          description: Published date of the story
-          format: date-time
-          type: string
-        title:
-          description: Title of the story
+        clusters:
+          description: An array of clusters
+          items:
+            $ref: '#/components/schemas/Cluster'
+          type: array
+        next_page_cursor:
+          description: The next page cursor
           type: string
       type: object
+  responses:
+    clusters:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Clusters'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Clusters'
+      description: An object including an array of clusters
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            format: int32
+            type: integer
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            format: int32
+            type: integer
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+            '
+          schema:
+            format: int64
+            type: integer
   securitySchemes:
     app_id:
       x-auth-id-alias: true

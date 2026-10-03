@@ -41,130 +41,7 @@ paths:
       tags:
       - Concepts
 components:
-  schemas:
-    Concept:
-      type: object
-      description: Single concept
-      properties:
-        surfaceForms:
-          type: array
-          items:
-            $ref: '#/components/schemas/SurfaceForm'
-        support:
-          type: number
-          description: Support factor
-          format: int
-        types:
-          type: array
-          items:
-            type: string
-            description: Concept type
-    SurfaceForm:
-      type: object
-      properties:
-        string:
-          type: string
-          description: Form source
-        score:
-          type: string
-          description: Form score
-          format: float
-        offset:
-          type: number
-          description: Form offset
-          format: int
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    Concepts:
-      type: object
-      description: Concepts root
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        lang:
-          $ref: '#/components/schemas/GenericInputLanguage'
-        concepts:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Concept'
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
-    GenericInputText:
-      type: string
-      description: Input text
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
   responses:
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -192,8 +69,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error404_NotFound:
-      description: Not Found
+    error401_Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -201,8 +78,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
+    error404_NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -243,8 +120,8 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Concepts'
-    error401_Unauthorized:
-      description: Unauthorized
+    error500_InternalServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -252,6 +129,129 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  schemas:
+    Concept:
+      type: object
+      description: Single concept
+      properties:
+        surfaceForms:
+          type: array
+          items:
+            $ref: '#/components/schemas/SurfaceForm'
+        support:
+          type: number
+          description: Support factor
+          format: int
+        types:
+          type: array
+          items:
+            type: string
+            description: Concept type
+    GenericInputText:
+      type: string
+      description: Input text
+    Concepts:
+      type: object
+      description: Concepts root
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        lang:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        concepts:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Concept'
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    SurfaceForm:
+      type: object
+      properties:
+        string:
+          type: string
+          description: Form source
+        score:
+          type: string
+          description: Form score
+          format: float
+        offset:
+          type: number
+          description: Form offset
+          format: int
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
   securitySchemes:
     app_id:
       type: apiKey

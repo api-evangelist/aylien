@@ -41,99 +41,7 @@ paths:
       tags:
       - Hashtags
 components:
-  schemas:
-    Hashtags:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        language:
-          $ref: '#/components/schemas/GenericInputLanguage'
-        hashtags:
-          type: array
-          description: Detected hashtags
-          items:
-            type: string
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    GenericInputText:
-      type: string
-      description: Input text
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
   responses:
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -154,6 +62,42 @@ components:
           schema:
             type: integer
             format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -194,33 +138,89 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Hashtags'
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
+  schemas:
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    Hashtags:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        language:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        hashtags:
+          type: array
+          description: Detected hashtags
+          items:
+            type: string
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    GenericInputText:
+      type: string
+      description: Input text
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
   securitySchemes:
     app_id:
       type: apiKey

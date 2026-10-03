@@ -48,105 +48,61 @@ paths:
       tags:
       - Sentiment
 components:
-  schemas:
-    Sentiment:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        polarity:
-          $ref: '#/components/schemas/GenericPolarity'
-        polarity_confidence:
-          $ref: '#/components/schemas/GenericPolarityConfidence'
-        subjectivity:
-          type: string
-          description: Detected subjectivity
-          enum:
-          - subjective
-          - unknown
-        subjectivity_confidence:
-          $ref: '#/components/schemas/GenericConfidence'
-    GenericPolarityConfidence:
-      type: number
-      format: float
-      description: Polarity confidence (0..1)
-      minimum: 0
-      maximum: 1
-    GenericConfidence:
-      type: number
-      format: float
-      description: Model confidence (0..1)
-      minimum: 0
-      maximum: 1
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    GenericPolarity:
-      type: string
-      description: Detected polarity
-      enum:
-      - positive
-      - negative
-      - neutral
-    GenericInputText:
-      type: string
-      description: Input text
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
   responses:
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+            '
+          schema:
+            type: integer
+            format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
     error422_UnprocessableEntity:
       description: Unprocessable Entity
       content:
@@ -189,60 +145,104 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Sentiment'
-    error429_TooManyRequests:
-      description: Too Many Requests
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+  schemas:
+    GenericPolarityConfidence:
+      type: number
+      format: float
+      description: Polarity confidence (0..1)
+      minimum: 0
+      maximum: 1
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericConfidence:
+      type: number
+      format: float
+      description: Model confidence (0..1)
+      minimum: 0
+      maximum: 1
+    Sentiment:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        polarity:
+          $ref: '#/components/schemas/GenericPolarity'
+        polarity_confidence:
+          $ref: '#/components/schemas/GenericPolarityConfidence'
+        subjectivity:
+          type: string
+          description: Detected subjectivity
+          enum:
+          - subjective
+          - unknown
+        subjectivity_confidence:
+          $ref: '#/components/schemas/GenericConfidence'
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    GenericInputText:
+      type: string
+      description: Input text
+    GenericPolarity:
+      type: string
+      description: Detected polarity
+      enum:
+      - positive
+      - negative
+      - neutral
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
 
-            '
-          schema:
-            type: integer
-            format: int64
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
   securitySchemes:
     app_id:
       type: apiKey

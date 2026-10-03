@@ -40,86 +40,7 @@ paths:
       tags:
       - Language
 components:
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
-  schemas:
-    Language:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        lang:
-          type: string
-          description: Detected language
-          enum:
-          - en
-          - de
-          - es
-          - fr
-          - it
-        confidence:
-          $ref: '#/components/schemas/GenericConfidence'
-    GenericConfidence:
-      type: number
-      format: float
-      description: Model confidence (0..1)
-      minimum: 0
-      maximum: 1
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    GenericInputText:
-      type: string
-      description: Input text
   responses:
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -140,6 +61,33 @@ components:
           schema:
             type: integer
             format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -180,8 +128,8 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Language'
-    error404_NotFound:
-      description: Not Found
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -189,24 +137,76 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
+  schemas:
+    GenericInputText:
+      type: string
+      description: Input text
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericConfidence:
+      type: number
+      format: float
+      description: Model confidence (0..1)
+      minimum: 0
+      maximum: 1
+    Language:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        lang:
+          type: string
+          description: Detected language
+          enum:
+          - en
+          - de
+          - es
+          - fr
+          - it
+        confidence:
+          $ref: '#/components/schemas/GenericConfidence'
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
   securitySchemes:
     app_id:
       type: apiKey
