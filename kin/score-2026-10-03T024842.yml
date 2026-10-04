@@ -1,22 +1,20 @@
-# Kin Score artifact — aylien — 2026-08-25T154045
+# Kin Score artifact — aylien — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: aylien
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 42.9
-  band: developing
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 38.5
+  band: thin
   facets:
-    discoverability: 74.1
-    contract_quality: 59.9
-    governance: 9.8
-    operational_transparency: 52.6
-    developer_ergonomics: 17.9
-    commercial_clarity: 44.7
+    discoverability: 66.1
+    contract_quality: 52.3
     contract_governance: 9.8
-    access_clarity: 44.7
+    operational_transparency: 49.5
+    developer_ergonomics: 17.9
+    access_clarity: 41.6
   agent_readiness:
     score: 30.6
     band: agent-ready
@@ -40,10 +38,16 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 15.5
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
       total: 17
       derived: 0
       coverage: 0.0
-      callable: 100.0
+      callable: 0.0
