@@ -49,84 +49,7 @@ paths:
       tags:
       - Summarize
 components:
-  schemas:
-    Summary:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        sentences:
-          type: array
-          items:
-            type: string
-            description: Summary sentence
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    GenericInputText:
-      type: string
-      description: Input text
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
   responses:
-    error429_TooManyRequests:
-      description: Too Many Requests
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
-
-            '
-          schema:
-            type: integer
-            format: int64
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error404_NotFound:
       description: Not Found
       content:
@@ -136,8 +59,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -145,8 +68,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
+    error401_Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -187,19 +110,96 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Summary'
-  parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
 
-        '
-      schema:
-        type: string
+            '
+          schema:
+            type: integer
+            format: int64
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  schemas:
+    Summary:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        sentences:
+          type: array
+          items:
+            type: string
+            description: Summary sentence
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    GenericInputText:
+      type: string
+      description: Input text
+  parameters:
     url:
       name: url
       in: query
       description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
 
         '
       schema:

@@ -42,6 +42,42 @@ paths:
       - Concepts
 components:
   responses:
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -62,24 +98,6 @@ components:
           schema:
             type: integer
             format: int64
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error404_NotFound:
-      description: Not Found
       content:
         application/json:
           schema:
@@ -120,25 +138,72 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Concepts'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
   schemas:
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    SurfaceForm:
+      type: object
+      properties:
+        string:
+          type: string
+          description: Form source
+        score:
+          type: string
+          description: Form score
+          format: float
+        offset:
+          type: number
+          description: Form offset
+          format: int
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    GenericInputText:
+      type: string
+      description: Input text
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Concepts:
+      type: object
+      description: Concepts root
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        lang:
+          $ref: '#/components/schemas/GenericInputLanguage'
+        concepts:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Concept'
     Concept:
       type: object
       description: Single concept
@@ -156,84 +221,19 @@ components:
           items:
             type: string
             description: Concept type
-    GenericInputText:
-      type: string
-      description: Input text
-    Concepts:
-      type: object
-      description: Concepts root
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        lang:
-          $ref: '#/components/schemas/GenericInputLanguage'
-        concepts:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Concept'
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    SurfaceForm:
-      type: object
-      properties:
-        string:
-          type: string
-          description: Form source
-        score:
-          type: string
-          description: Form score
-          format: float
-        offset:
-          type: number
-          description: Form offset
-          format: int
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
   parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
     url:
       name: url
       in: query
       description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
 
         '
       schema:

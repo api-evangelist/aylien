@@ -294,44 +294,6 @@ paths:
       summary: List Clusters
 components:
   schemas:
-    RepresentativeStory:
-      properties:
-        id:
-          description: ID of the story which is a unique identification
-          format: int64
-          type: integer
-        permalink:
-          description: The story permalink URL
-          type: string
-        published_at:
-          description: Published date of the story
-          format: date-time
-          type: string
-        title:
-          description: Title of the story
-          type: string
-      type: object
-    Location:
-      properties:
-        city:
-          description: The city of the location
-          type: string
-        country:
-          description: 'The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
-
-            '
-          type: string
-        state:
-          description: The state of the location
-          type: string
-      type: object
-    ErrorLinks:
-      properties:
-        about:
-          type: string
-        docs:
-          type: string
-      type: object
     Cluster:
       properties:
         earliest_story:
@@ -359,13 +321,6 @@ components:
           format: date-time
           type: string
       type: object
-    Errors:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-      type: object
     Error:
       properties:
         code:
@@ -381,6 +336,34 @@ components:
         title:
           type: string
       type: object
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
+          type: string
+      type: object
+    Location:
+      properties:
+        city:
+          description: The city of the location
+          type: string
+        country:
+          description: 'The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
+
+            '
+          type: string
+        state:
+          description: The state of the location
+          type: string
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
     Clusters:
       properties:
         cluster_count:
@@ -394,6 +377,23 @@ components:
           type: array
         next_page_cursor:
           description: The next page cursor
+          type: string
+      type: object
+    RepresentativeStory:
+      properties:
+        id:
+          description: ID of the story which is a unique identification
+          format: int64
+          type: integer
+        permalink:
+          description: The story permalink URL
+          type: string
+        published_at:
+          description: Published date of the story
+          format: date-time
+          type: string
+        title:
+          description: Title of the story
           type: string
       type: object
   responses:

@@ -76,15 +76,6 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error404_NotFound:
       description: Not Found
       content:
@@ -94,8 +85,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -103,8 +94,17 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error500_InternalServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -146,17 +146,49 @@ components:
               root:
                 $ref: '#/components/schemas/Sentiment'
   schemas:
+    GenericPolarity:
+      type: string
+      description: Detected polarity
+      enum:
+      - positive
+      - negative
+      - neutral
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ErrorLinks'
+        status:
+          type: string
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
     GenericPolarityConfidence:
       type: number
       format: float
       description: Polarity confidence (0..1)
       minimum: 0
       maximum: 1
-    ErrorLinks:
+    GenericInputText:
+      type: string
+      description: Input text
+    Errors:
       type: object
       properties:
-        about:
-          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     GenericConfidence:
       type: number
       format: float
@@ -180,51 +212,19 @@ components:
           - unknown
         subjectivity_confidence:
           $ref: '#/components/schemas/GenericConfidence'
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    GenericInputText:
-      type: string
-      description: Input text
-    GenericPolarity:
-      type: string
-      description: Detected polarity
-      enum:
-      - positive
-      - negative
-      - neutral
-    Error:
-      type: object
-      properties:
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ErrorLinks'
-        status:
-          type: string
-        code:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
   parameters:
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
     url:
       name: url
       in: query
       description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
 
         '
       schema:

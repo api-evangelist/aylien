@@ -174,37 +174,6 @@ components:
         - integer
         - 'null'
   schemas:
-    Autocompletes:
-      properties:
-        autocompletes:
-          description: An array of autocompletes
-          items:
-            $ref: '#/components/schemas/Autocomplete'
-          type: array
-      type: object
-    ErrorLinks:
-      properties:
-        about:
-          type: string
-        docs:
-          type: string
-      type: object
-    Errors:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-      type: object
-    Autocomplete:
-      properties:
-        id:
-          description: ID of the autocomplete
-          type: string
-        text:
-          description: Text of the autocomplete
-          type: string
-      type: object
     Error:
       properties:
         code:
@@ -219,6 +188,37 @@ components:
           type: string
         title:
           type: string
+      type: object
+    ErrorLinks:
+      properties:
+        about:
+          type: string
+        docs:
+          type: string
+      type: object
+    Autocomplete:
+      properties:
+        id:
+          description: ID of the autocomplete
+          type: string
+        text:
+          description: Text of the autocomplete
+          type: string
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      type: object
+    Autocompletes:
+      properties:
+        autocompletes:
+          description: An array of autocompletes
+          items:
+            $ref: '#/components/schemas/Autocomplete'
+          type: array
       type: object
   securitySchemes:
     app_id:
