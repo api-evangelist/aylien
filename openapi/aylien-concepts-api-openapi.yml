@@ -42,17 +42,26 @@ paths:
       - Concepts
 components:
   responses:
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
           schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
           schema:
-            $ref: '#/components/schemas/Errors'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+            '
+          schema:
+            type: integer
+            format: int64
       content:
         application/json:
           schema:
@@ -78,26 +87,17 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error429_TooManyRequests:
-      description: Too Many Requests
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
           schema:
-            type: integer
-            format: int32
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
+            $ref: '#/components/schemas/Errors'
+        text/xml:
           schema:
-            type: integer
-            format: int32
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
-
-            '
-          schema:
-            type: integer
-            format: int64
+            $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/json:
           schema:
@@ -139,6 +139,36 @@ components:
               root:
                 $ref: '#/components/schemas/Concepts'
   schemas:
+    SurfaceForm:
+      type: object
+      properties:
+        string:
+          type: string
+          description: Form source
+        score:
+          type: string
+          description: Form score
+          format: float
+        offset:
+          type: number
+          description: Form offset
+          format: int
+    GenericInputLanguage:
+      type: string
+      description: Input language
+      enum:
+      - en
+      - de
+      - es
+      - fr
+      - it
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     Error:
       type: object
       properties:
@@ -154,44 +184,11 @@ components:
           type: string
         detail:
           type: string
-    SurfaceForm:
-      type: object
-      properties:
-        string:
-          type: string
-          description: Form source
-        score:
-          type: string
-          description: Form score
-          format: float
-        offset:
-          type: number
-          description: Form offset
-          format: int
     ErrorLinks:
       type: object
       properties:
         about:
           type: string
-    GenericInputLanguage:
-      type: string
-      description: Input language
-      enum:
-      - en
-      - de
-      - es
-      - fr
-      - it
-    GenericInputText:
-      type: string
-      description: Input text
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     Concepts:
       type: object
       description: Concepts root
@@ -204,6 +201,9 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Concept'
+    GenericInputText:
+      type: string
+      description: Input text
     Concept:
       type: object
       description: Single concept
@@ -222,18 +222,18 @@ components:
             type: string
             description: Concept type
   parameters:
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
     text:
       name: text
       in: query
       description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
 
         '
       schema:

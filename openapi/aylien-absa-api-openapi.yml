@@ -52,26 +52,21 @@ paths:
       - Absa
 components:
   schemas:
-    AspectSentimentAspect:
+    AspectSentimentSentence:
       type: object
-      description: Aspect data
+      description: Aspect sentence
       properties:
-        aspect:
-          $ref: '#/components/schemas/GenericAspect'
-        aspect_confidence:
-          $ref: '#/components/schemas/GenericAspectConfidence'
+        text:
+          type: string
+          description: Sentence text
         polarity:
           $ref: '#/components/schemas/GenericPolarity'
         polarity_confidence:
           $ref: '#/components/schemas/GenericPolarityConfidence'
-        mentions:
-          description: Number of mentions
-          type: number
-        sample:
-          description: Mentions sample
+        aspects:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AspectSentimentSentenceAspect'
     Error:
       type: object
       properties:
@@ -105,27 +100,6 @@ components:
           $ref: '#/components/schemas/GenericPolarity'
         polarity_confidence:
           $ref: '#/components/schemas/GenericPolarityConfidence'
-    AspectSentimentSentence:
-      type: object
-      description: Aspect sentence
-      properties:
-        text:
-          type: string
-          description: Sentence text
-        polarity:
-          $ref: '#/components/schemas/GenericPolarity'
-        polarity_confidence:
-          $ref: '#/components/schemas/GenericPolarityConfidence'
-        aspects:
-          type: array
-          items:
-            $ref: '#/components/schemas/AspectSentimentSentenceAspect'
-    GenericPolarityConfidence:
-      type: number
-      format: float
-      description: Polarity confidence (0..1)
-      minimum: 0
-      maximum: 1
     Errors:
       type: object
       properties:
@@ -133,9 +107,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    GenericInputText:
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericPolarity:
       type: string
-      description: Input text
+      description: Detected polarity
+      enum:
+      - positive
+      - negative
+      - neutral
+    GenericPolarityConfidence:
+      type: number
+      format: float
+      description: Polarity confidence (0..1)
+      minimum: 0
+      maximum: 1
     AspectSentiment:
       type: object
       properties:
@@ -152,52 +141,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AspectSentimentSentence'
-    GenericPolarity:
-      type: string
-      description: Detected polarity
-      enum:
-      - positive
-      - negative
-      - neutral
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
     GenericAspect:
       description: Detected aspect
       type: string
       enum:
       - subjective
       - unknown
+    AspectSentimentAspect:
+      type: object
+      description: Aspect data
+      properties:
+        aspect:
+          $ref: '#/components/schemas/GenericAspect'
+        aspect_confidence:
+          $ref: '#/components/schemas/GenericAspectConfidence'
+        polarity:
+          $ref: '#/components/schemas/GenericPolarity'
+        polarity_confidence:
+          $ref: '#/components/schemas/GenericPolarityConfidence'
+        mentions:
+          description: Number of mentions
+          type: number
+        sample:
+          description: Mentions sample
+          type: array
+          items:
+            type: string
+    GenericInputText:
+      type: string
+      description: Input text
   responses:
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -258,6 +231,33 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/AspectSentiment'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
     error422_UnprocessableEntity:
       description: Unprocessable Entity
       content:
@@ -268,6 +268,14 @@ components:
           schema:
             $ref: '#/components/schemas/Errors'
   parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
     url:
       name: url
       in: query
@@ -290,14 +298,6 @@ components:
         - es
         - fr
         - it
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
   securitySchemes:
     app_id:
       type: apiKey

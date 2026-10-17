@@ -41,8 +41,26 @@ paths:
       - Language
 components:
   responses:
-    error404_NotFound:
-      description: Not Found
+    error429_TooManyRequests:
+      description: Too Many Requests
+      headers:
+        X-RateLimit-Limit:
+          description: The number of allowed requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Remaining:
+          description: The number of remaining requests in the current period.
+          schema:
+            type: integer
+            format: int32
+        X-RateLimit-Reset:
+          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
+
+            '
+          schema:
+            type: integer
+            format: int64
       content:
         application/json:
           schema:
@@ -83,15 +101,6 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/Language'
-    error422_UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error401_Unauthorized:
       description: Unauthorized
       content:
@@ -110,26 +119,8 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
-    error429_TooManyRequests:
-      description: Too Many Requests
-      headers:
-        X-RateLimit-Limit:
-          description: The number of allowed requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Remaining:
-          description: The number of remaining requests in the current period.
-          schema:
-            type: integer
-            format: int32
-        X-RateLimit-Reset:
-          description: 'The remaining window before the rate limit resets in UTC [epoch seconds](https://en.wikipedia.org/wiki/Unix_time).
-
-            '
-          schema:
-            type: integer
-            format: int64
+    error404_NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -137,7 +128,40 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
+    error422_UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
   schemas:
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     Error:
       type: object
       properties:
@@ -158,13 +182,12 @@ components:
       properties:
         about:
           type: string
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
+    GenericConfidence:
+      type: number
+      format: float
+      description: Model confidence (0..1)
+      minimum: 0
+      maximum: 1
     GenericInputText:
       type: string
       description: Input text
@@ -184,29 +207,6 @@ components:
           - it
         confidence:
           $ref: '#/components/schemas/GenericConfidence'
-    GenericConfidence:
-      type: number
-      format: float
-      description: Model confidence (0..1)
-      minimum: 0
-      maximum: 1
-  parameters:
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
   securitySchemes:
     app_id:
       type: apiKey

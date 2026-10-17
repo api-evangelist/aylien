@@ -42,33 +42,6 @@ paths:
       - Elsa
 components:
   responses:
-    error404_NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error401_Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
-    error500_InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Errors'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/Errors'
     error429_TooManyRequests:
       description: Too Many Requests
       headers:
@@ -129,6 +102,33 @@ components:
             properties:
               root:
                 $ref: '#/components/schemas/EntitySentiment'
+    error500_InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error404_NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    error401_Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/Errors'
     error422_UnprocessableEntity:
       description: Unprocessable Entity
       content:
@@ -138,7 +138,47 @@ components:
         text/xml:
           schema:
             $ref: '#/components/schemas/Errors'
+  parameters:
+    text:
+      name: text
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+    url:
+      name: url
+      in: query
+      description: 'URL to analyze
+
+        '
+      schema:
+        type: string
+    language:
+      name: language
+      in: query
+      description: 'Text to analyze
+
+        '
+      schema:
+        type: string
+        enum:
+        - en
+        - de
+        - es
+        - fr
+        - it
   schemas:
+    EntitySentiment:
+      type: object
+      properties:
+        text:
+          $ref: '#/components/schemas/GenericInputText'
+        entites:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitySentimentEntity'
     Error:
       type: object
       properties:
@@ -154,12 +194,75 @@ components:
           type: string
         detail:
           type: string
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    EntitySentimentEntityMention:
+      type: object
+      properties:
+        offset:
+          type: number
+          format: int
+          description: Mention offset
+        confidence:
+          $ref: '#/components/schemas/GenericConfidence'
+        text:
+          type: string
+          description: Mention text
+        sentiment:
+          type: array
+          description: Mention sentiment data
+          items:
+            type: object
+            properties:
+              polarity:
+                $ref: '#/components/schemas/GenericPolarity'
+              confidence:
+                $ref: '#/components/schemas/GenericPolarityConfidence'
+    ErrorLinks:
+      type: object
+      properties:
+        about:
+          type: string
+    GenericPolarity:
+      type: string
+      description: Detected polarity
+      enum:
+      - positive
+      - negative
+      - neutral
+    GenericPolarityConfidence:
+      type: number
+      format: float
+      description: Polarity confidence (0..1)
+      minimum: 0
+      maximum: 1
     GenericConfidence:
       type: number
       format: float
       description: Model confidence (0..1)
       minimum: 0
       maximum: 1
+    EntitySentimentEntityLink:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Entity URI
+        provider:
+          type: string
+          description: Entity provider
+        types:
+          type: array
+          description: Entity types
+          items:
+            type: string
+        confidence:
+          $ref: '#/components/schemas/GenericConfidence'
     EntitySentimentEntity:
       type: object
       description: Entity-based sentiment data, per entity
@@ -185,112 +288,9 @@ components:
           description: Entity links
           items:
             $ref: '#/components/schemas/EntitySentimentEntityLink'
-    GenericPolarityConfidence:
-      type: number
-      format: float
-      description: Polarity confidence (0..1)
-      minimum: 0
-      maximum: 1
-    Errors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    EntitySentiment:
-      type: object
-      properties:
-        text:
-          $ref: '#/components/schemas/GenericInputText'
-        entites:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntitySentimentEntity'
     GenericInputText:
       type: string
       description: Input text
-    EntitySentimentEntityLink:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Entity URI
-        provider:
-          type: string
-          description: Entity provider
-        types:
-          type: array
-          description: Entity types
-          items:
-            type: string
-        confidence:
-          $ref: '#/components/schemas/GenericConfidence'
-    GenericPolarity:
-      type: string
-      description: Detected polarity
-      enum:
-      - positive
-      - negative
-      - neutral
-    ErrorLinks:
-      type: object
-      properties:
-        about:
-          type: string
-    EntitySentimentEntityMention:
-      type: object
-      properties:
-        offset:
-          type: number
-          format: int
-          description: Mention offset
-        confidence:
-          $ref: '#/components/schemas/GenericConfidence'
-        text:
-          type: string
-          description: Mention text
-        sentiment:
-          type: array
-          description: Mention sentiment data
-          items:
-            type: object
-            properties:
-              polarity:
-                $ref: '#/components/schemas/GenericPolarity'
-              confidence:
-                $ref: '#/components/schemas/GenericPolarityConfidence'
-  parameters:
-    url:
-      name: url
-      in: query
-      description: 'URL to analyze
-
-        '
-      schema:
-        type: string
-    language:
-      name: language
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
-        enum:
-        - en
-        - de
-        - es
-        - fr
-        - it
-    text:
-      name: text
-      in: query
-      description: 'Text to analyze
-
-        '
-      schema:
-        type: string
   securitySchemes:
     app_id:
       type: apiKey
